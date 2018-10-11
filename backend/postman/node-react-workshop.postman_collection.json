@@ -1,0 +1,104 @@
+{
+	"info": {
+		"_postman_id": "6a0f59a6-5be1-46d1-80a7-3d0907eeefb4",
+		"name": "node-react-workshop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Backend",
+			"item": [
+				{
+					"name": "Create example DB",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/dev/v1/database/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"database",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Select data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "localhost:8080/api/dev/v1/database/select",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"database",
+								"select"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Insert",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"forename\": \"Axel-{{$timestamp}}\",\n    \"surename\": \"Motyka-{{$timestamp}}\",\n    \"email\": \"axel.motyka-{{$timestamp}}@telekom.de\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/dev/v1/database/insert/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"dev",
+								"v1",
+								"database",
+								"insert",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Spoonacular",
+			"item": []
+		}
+	]
+}

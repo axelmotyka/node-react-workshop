@@ -1,0 +1,21 @@
+{
+  "name": "recipesbackend",
+  "version": "1.0.0",
+  "description": "Recipe Backend",
+  "main": "src/server/server.js",
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "koa": "^2.5.3",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "sqlite3": "^4.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node ./src/server/server.js",
+    "debug": "nodemon --inspect ./src/server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Axel Motyka",
+  "license": "ISC"
+}
