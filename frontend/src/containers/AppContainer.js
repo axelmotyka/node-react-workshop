@@ -1,11 +1,8 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./AppContainer.css";
 import {hot} from "react-hot-loader";
 
-class App extends Component {
-  bla() {
-    console.log("bla");
-  }
+class AppContainer extends Component {
   render() {
     console.log("hello");
     return ( 
@@ -16,4 +13,4 @@ class App extends Component {
   }
 }
 
-export default hot(module)(App);
+export default hot(module)(AppContainer);
