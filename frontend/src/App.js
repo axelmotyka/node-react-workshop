@@ -7,7 +7,7 @@ class App extends Component {
     console.log("bla");
   }
   render() {
-
+    console.log("hello");
     return ( 
       <div className = "App" >
       <h1>Hello, World!</h1> 
