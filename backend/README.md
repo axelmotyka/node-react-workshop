@@ -3,6 +3,11 @@
 * Install `node` version 10
 * Install `nodemon` with `npm install -g nodemon`
 * Open `backend` in VS Code
+* Run `npm i` in console, you should see something like this:
+  ```zsh
+  added 162 packages from 122 contributors and audited 247 packages in 7.002s
+  found 0 vulnerabilities
+  ```
 * In your VS Code TERMINAL execute `npm run debug`, you should see this:
   ```zsh
    ✘ axelmotyka@MacBook-Pro-2  ~/src/node-react-workshop/backend   master  npm run debug

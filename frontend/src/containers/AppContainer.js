@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import "./AppContainer.css";
 import {hot} from "react-hot-loader";
+import NewRecordContainer from "./NewRecordContainer";
 
-class AppContainer extends Component {
+class AppContainer extends Component {  
   render() {
-    console.log("hello");
+    console.log("Rendering AppContainer");
     return ( 
       <div className = "App" >
-      <h1>Hello, World!</h1> 
+        <NewRecordContainer/>
       </div>
     );
   }

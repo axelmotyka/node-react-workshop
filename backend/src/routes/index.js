@@ -9,7 +9,7 @@ router.get('/', async (ctx) => {
   });
   router.get('/error', async (ctx) => {
     ctx.throw(
-      400, 
+      400,
       'Ooopps!')
     });
 
