@@ -1,14 +1,25 @@
-import { resolve } from 'path';
-import { rejects } from 'assert';
-var requestp = require('request-promise');
+const Promise = require('bluebird')
+const Request = require('request-promise');
 
 class RecordsApi {
+
     static get(url) {
         return {
             method: 'GET',
             uri: url,
             headers: {
-                //'Access-Control-Allow-Origin':'http://localhost:3000',
+                'Content-Type': 'application/json'
+            },
+            json: true // Automatically parses the JSON string in the response
+        };
+    }
+
+    static post(url, body) {
+        return {
+            method: 'Post',
+            uri: url,
+            body: body,
+            headers: {
                 'Content-Type': 'application/json'
             },
             json: true // Automatically parses the JSON string in the response
@@ -16,16 +27,30 @@ class RecordsApi {
     }
 
     static getRecords() {
-        //const opt = this.get("/api/dev/v1/database/select");
+        return new Promise((resolve, reject) => {
+            Request(this.get("http://localhost:3000/api/dev/v1/database/select"))
+                .then(function (response) {
+                    console.log(response);
+                    resolve(response);
+                })
+                .catch(function (err) {
+                    console.error(err)
+                    reject(err);
+                });
+        });
+    }
 
-        return requestp(this.get("http://localhost:3000/api/dev/v1/database/select"))
-        .then(function (response) {
-            console.log(response);
-            resolve(response);
-        })
-        .catch(function (err) {
-            console.error(err)
-            rejects(err);
+    static insertRecord(record) {
+        return new Promise((resolve, reject) => {
+            Request(this.post("http://localhost:3000/api/dev/v1/database/insert", record))
+                .then(function (response) {
+                    console.log(response);
+                    resolve(response);
+                })
+                .catch(function (err) {
+                    console.error(err)
+                    reject(err);
+                });
         });
     }
 }

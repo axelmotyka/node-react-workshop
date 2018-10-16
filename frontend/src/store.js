@@ -19,7 +19,7 @@ function configureStore(initialState) {
 }
 
 let initialStoreState = {
-    message : "Hi Guys, it's " + new Date(),
+    records : [],
 }
 
 const store = configureStore(initialStoreState);

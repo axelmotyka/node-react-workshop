@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
-const Dao = require('../db/dao')
+const Dao = require('../db/SimpleDao')
 
 const LOG_TAG = 'DaoRouter'
 const BASE_URL = '/api/dev/v1/database';

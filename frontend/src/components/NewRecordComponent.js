@@ -1,24 +1,70 @@
 import React, { Component } from "react";
-import { withStyles } from '@material-ui/core/styles';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { ActionCreators } from '../actions';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import RecordsTable from './RecordsTableComponent'
 
-class NewRecordComponent extends Component {  
+class NewRecordComponent extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      forename: 'aaa',
+      surename: 'bbb',
+      email: 'ccc'
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({[event.target.name]: event.target.value});
+  }
+  
+  insertPressed() {
+    console.log("insertPressed() => ");
+    this.props.insertRecord(this.state);
+  }
+
   render() {
     return ( 
       <Grid
       item
       container
       direction="row">
-        <TextField className={'margin: theme.spacing.unit,'} inputProps={{'aria-label': 'Description',}} label="forename" helperText="Some important text"/>
-        <TextField className={'margin: theme.spacing.unit,'} inputProps={{'aria-label': 'Description',}} label="surename" helperText="Some important text"/>
-        <TextField className={'margin: theme.spacing.unit,'} inputProps={{'aria-label': 'Description',}} label="email" helperText="Some important text"/>
-        <Button variant="contained" color="primary">Insert</Button>
+        <TextField
+          name="forename"
+          className={'margin: theme.spacing.unit,'} 
+          inputProps={{'aria-label': 'Description',}} 
+          label="forename"
+          value={this.state.forename}
+          onChange={this.handleChange} 
+        />
+        <TextField
+          name="surename"
+          className={'margin: theme.spacing.unit,'}
+          inputProps={{'aria-label': 'Description',}}
+          label="surename"
+          value={this.state.surename}
+          onChange={this.handleChange}/>
+        <TextField
+          name="email"
+          className={'margin: theme.spacing.unit,'}
+          inputProps={{'aria-label': 'Description',}} 
+          label="email"
+          value={this.state.email}
+          onChange={this.handleChange}/>
+        <Button variant="contained" color="primary" onClick={ () => this.insertPressed()}>Insert</Button>
       </Grid>
     );
   }
 }
 
-export default NewRecordComponent;
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators(ActionCreators, dispatch);
+}
+
+export default connect(null, mapDispatchToProps)(NewRecordComponent);

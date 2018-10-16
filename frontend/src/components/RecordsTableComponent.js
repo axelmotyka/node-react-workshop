@@ -39,10 +39,6 @@ class RecordsTableComponent extends Component {
   render() {
     const { classes } = this.props;
 
-    const rows = [
-      this.createData('Forname ', 'Surename ', 'Email ')
-    ];
-
     return (
       <Paper className={classes.root}>
       <Button variant="contained" color="primary" onClick={ () => this.updatePressed()}>Update</Button>
@@ -56,13 +52,13 @@ class RecordsTableComponent extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map(row => {
+            {this.props.records.map(record => {
               return (
-                <TableRow key={row.id}>
-                  <TableCell numeric>{row.id}</TableCell>
-                  <TableCell numeric>{row.forename}</TableCell>
-                  <TableCell numeric>{row.surename}</TableCell>
-                  <TableCell numeric>{row.email}</TableCell>
+                <TableRow key={record.id}>
+                  <TableCell numeric>{record.id}</TableCell>
+                  <TableCell numeric>{record.forename}</TableCell>
+                  <TableCell numeric>{record.surename}</TableCell>
+                  <TableCell numeric>{record.email}</TableCell>
                 </TableRow>
               );
             })}

@@ -7,17 +7,25 @@ export function getRecords() {
         return RecordsApi.getRecords()
         .then(
             response => {
-            console.log(response);
             dispatch(setRecords(response));
         })
     }
 }
 
 export function setRecords(records) {
-    console.log("**************** actions/setRecords() ****************");
-    console.log(records);
     return {
         type: types.SET_RECORDS,
         records,
+    }
+}
+
+export function insertRecord(record) {
+    console.log("**************** actions/insertRecord() ****************");
+    return (dispatch, getState) => {
+        return RecordsApi.insertRecord(record)
+        .then(
+            response => {
+            dispatch(response);
+        })
     }
 }
