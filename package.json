@@ -9,6 +9,9 @@
     "koa-router": "^7.4.0",
     "sqlite3": "^4.0.2"
   },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
+  },
   "scripts": {
     "client": "cd frontend && npm start",
     "server": "nodemon --inspect ./backend/src/server/server.js",

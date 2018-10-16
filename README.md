@@ -10,9 +10,8 @@
     npm i
    ```
 5. Change to `frontend` and run `npm i`
-6. Change to `backend` and run `npm i`
-7. When opening `http://localhost:3000` you should see an unfinished frontend!
-8. When opening `http://localhost:8080` you should see a welcome JSON.
+6. When opening `http://localhost:3000` you should see **an unfinished frontend!**
+7. When opening `http://localhost:8080` you should see a welcome JSON.
 
 ## Structure
 Inside `backend` you find your backend-server, more is described in the backends README.md.
