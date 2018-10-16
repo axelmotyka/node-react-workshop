@@ -20,6 +20,7 @@ function configureStore(initialState) {
 
 let initialStoreState = {
     records : [],
+    lastInsertResult: {}
 }
 
 const store = configureStore(initialStoreState);

@@ -25,7 +25,14 @@ export function insertRecord(record) {
         return RecordsApi.insertRecord(record)
         .then(
             response => {
-            dispatch(response);
+            dispatch(insertRecordResult(response));
         })
+    }
+}
+
+export function insertRecordResult(result) {
+    return {
+        type: types.INSERT_RECORD,
+        result,
     }
 }
