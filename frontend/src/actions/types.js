@@ -1,2 +1,3 @@
 //Message 
-export const SET_MESSAGE = 'SET_MESSAGE';
+export const GET_RECORDS = 'GET_RECORDS';
+export const SET_RECORDS = 'SET_RECORDS';

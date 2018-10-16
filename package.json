@@ -1,0 +1,19 @@
+{
+  "name": "recipesbackend",
+  "version": "1.0.0",
+  "description": "Recipe Backend",
+  "dependencies": {
+    "bluebird": "^3.5.2",
+    "koa": "^2.5.3",
+    "koa-bodyparser": "^4.2.1",
+    "koa-router": "^7.4.0",
+    "sqlite3": "^4.0.2"
+  },
+  "scripts": {
+    "client": "cd frontend && npm start",
+    "server": "nodemon --inspect ./backend/src/server/server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "author": "Axel Motyka",
+  "license": "ISC"
+}

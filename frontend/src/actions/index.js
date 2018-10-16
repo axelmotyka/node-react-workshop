@@ -1,6 +1,6 @@
-import * as MessageActions from './messageActions'
+import * as RecordActions from './recordsAction'
 
 export const ActionCreators = Object.assign(
     {},
-    MessageActions
+    RecordActions
 );

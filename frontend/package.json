@@ -1,40 +1,38 @@
 {
-  "name": "recipesfrontend",
-  "version": "1.0.0",
-  "description": "Recipe Frontend",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config ./webpack.config.js --open",
-    "build": "webpack --config ./webpack.config.js"
-  },
-  "author": "Axel Motyka",
-  "license": "ISC",
-  "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.4",
-    "css-loader": "^1.0.0",
-    "eslint": "^5.6.1",
-    "file-loader": "^2.0.0",
-    "html-webpack-plugin": "^3.2.0",
-    "prettier-eslint": "^8.8.2",
-    "redux-devtools-extension": "^2.13.5",
-    "style-loader": "^0.23.1",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
-  },
+  "name": "frontend2",
+  "version": "0.1.0",
+  "private": true,
+  "proxy": "http://localhost:8080/",
   "dependencies": {
-    "@material-ui/core": "^3.2.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-hot-loader": "^4.3.11",
+    "react-scripts": "2.0.5",
+    "@material-ui/core": "^3.2.1",
+    "bluebird": "^3.5.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "redux-devtools-extension": "^2.13.5"
   }
 }

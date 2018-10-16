@@ -1,8 +1,8 @@
 import {
     combineReducers
 } from 'redux';
-import * as messageReducer from './messageReducer.js'
+import * as recordsReducer from './recordsReducer.js'
 
 export default combineReducers(Object.assign(
-    messageReducer
+    recordsReducer
 ));
