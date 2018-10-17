@@ -32,6 +32,6 @@ There is an example call for all endpoints!
 # Files
 * `src/server/server.js` - Start script for the backend
 * `src/routes/*` - http endpoints
-* `src/db/dao.js` - a very simple database handler
-* `example.sqlite3` - the sqlite3 database. There are nice tools in VSCode to open and manage it!
+* `src/db/SimpleDao.js` - a very simple database handler
+* `example.sqlite3` - the sqlite3 database. There are nice tools in VSCode to open and manage it! You must create it  first, by calling the `create` endpoint.
   
