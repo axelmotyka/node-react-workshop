@@ -8,6 +8,8 @@
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "sqlite3": "^4.0.2"
   },
   "scripts": {
