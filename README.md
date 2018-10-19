@@ -15,7 +15,22 @@
 8. When opening `http://localhost:8080` you should see a welcome JSON from the backend.
 
 ## Debugging
-![alt text][FrontendDebug](doc/FrontendDebug1.png)
+Debug connection is set in the `.vscode/launch.json`. 
+If the project is started by using the `yarn dev` command from the projects root, both projects are started!
+Backend can be run seperated from the frontend, cause of this the frontend directory does not contain an additional `.vscode/launch.json`!
+
+### Frontend
+Inside VS Code the debugger must be connected to Chrome. 
+So first install the VS Code extension `Debugger for Chrome`, then on the debug tab start `Frontend Debug against Chrome`.
+![](doc/FrontendDebug1.png)
+![](doc/FrontendDebug2.png)
+
+### Backend
+Inside VS Code the debugger must be connected to Node. 
+Do do so click on the debug tab and start `Backend Debug against Node(Nodemon)`.
+![](doc/BackendDebug1.png)
+![](doc/BackendDebug2.png)
+![](doc/BackendDebug3.png)
 
 ## Structure
 Inside `backend` you find your backend-server, more is described in the backends README.md.
