@@ -24,6 +24,12 @@
    Server listening on routes: /,/error,/api/dev/v1/database/create,/api/dev/v1/database/select,/api/dev/v1/database/insert
    Server listening on port: 8080
   ```
+### Debug
+Inside VS Code the debugger must be connected to Node. 
+Do do so click on the debug tab and start `Backend Debug against Node(Nodemon)`.
+![](../doc/BackendDebug1.png)
+![](../doc/BackendDebug2.png)
+![](../doc/BackendDebug3.png)
 
 # Postman
 Import `postman/node-react-workshop.postman_collection.json` into Postman.
@@ -34,4 +40,3 @@ There is an example call for all endpoints!
 * `src/routes/*` - http endpoints
 * `src/db/SimpleDao.js` - a very simple database handler
 * `example.sqlite3` - the sqlite3 database. There are nice tools in VSCode to open and manage it! You must create it  first, by calling the `create` endpoint.
-  
