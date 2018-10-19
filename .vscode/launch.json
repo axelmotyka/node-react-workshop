@@ -5,13 +5,22 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Frontend Debug against Chrome",
             "type": "chrome",
             "request": "launch",
-            "stopOnEntry": false,
-            "name": "Launch Chrome against localhost",
             "url": "http://localhost:3000",
             "webRoot": "${workspaceFolder}/frontend/src",
+            "stopOnEntry": false
             
+        },
+        {
+            "name": "Backend Debug against Node(Nodemon)",
+            "type": "node",
+            "request": "attach",
+            "processId": "${command:PickProcess}",
+            "restart": true,
+            "stopOnEntry":false,
+            "protocol": "inspector",
         }
     ]
 }
