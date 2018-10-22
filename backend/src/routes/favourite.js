@@ -23,8 +23,8 @@ const exampleData = {
 				"urlToImage": "https://techcrunch.com/wp-content/uploads/2018/09/IMG_3293.jpg?w=600",
 				"publishedAt": "2018-10-21T15:15:58Z",
 				"content": "More posts by this contributor Every time I ponder the impact Apple Watch has had on my life, my mind always goes to Matthew Panzarinos piece published prior to the devices launch in 2015. In it, Panzarino writes about how using Apple Watch saves time; as a s… [+15270 chars]",
-				"favourite": UserID,
-				"like":1
+				"favourite": null,
+				"like": null
 			},
 			{
 				"source": {
@@ -54,7 +54,7 @@ const exampleData = {
 				"publishedAt": "2018-10-20T14:09:34Z",
 				"content": "Ive been using the Google Pixel 3 XL since its launch two weeks ago, and I wholeheartedly agree with our review s conclusion that the Pixel 3 offers the best Android experience right now. But theres one aspect of that Android experience that I cant abide, and… [+5434 chars]",
 				"favourite": null,
-				"like":null
+				"like": null
 			},
 			{
 				"source": {
@@ -69,7 +69,7 @@ const exampleData = {
 				"publishedAt": "2018-10-19T19:55:24+00:00",
 				"content": "271 Apple CEO Tim Cook is calling on Bloomberg Business to retract a story that said his company was the victim of a hardware-based attack carried out by the Chinese government. It's the first time Apple has ever publicly demanded a retraction, according to B… [+3475 chars]",
 				"favourite": null,
-				"like":null
+				"like": null
 			},
 			{
 				"source": {
@@ -84,7 +84,7 @@ const exampleData = {
 				"publishedAt": "2018-10-19T14:22:02Z",
 				"content": "Uber has transformed the global taxi industry now its aiming at Uber-izing side hustles. The ride-hail company has quietly been developing a new short-term staffing business, called Uber Works, to expand its on-demand model into additional types of temporary … [+4764 chars]",
 				"favourite": null,
-				"like":null
+				"like": null
 			},
 			{
 				"source": {
@@ -99,7 +99,7 @@ const exampleData = {
 				"publishedAt": "2018-10-18T16:26:54Z",
 				"content": "Apple is officially holding its next launch event in New York City on October 30, and we fully expect the iPad Pro 2018 and new MacBooks to launch then. Specifically, the launch event will be at the Brooklyn Academy of Music's Howard Gilman Opera House, accor… [+2935 chars]",
 				"favourite": null,
-				"like":null
+				"like": null
 			}
 		]
 	}
