@@ -1,0 +1,10 @@
+{
+    "prettier.tabWidth": 4,
+    "prettier.eslintIntegration": true,
+    "prettier.useTabs": true,
+    "prettier.trailingComma": "es5",
+    "prettier.semi": false,
+    "prettier.singleQuote": true,
+    "prettier.jsxBracketSameLine": true,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+}

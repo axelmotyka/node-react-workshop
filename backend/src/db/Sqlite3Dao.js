@@ -1,16 +1,26 @@
 const sqlite3 = require('sqlite3').verbose()
 const Promise = require('bluebird')
 
+const LOG_TAG = 'Sqlite3Dao'
+
 class AppDAO {
     constructor(dbFilePath) {
-        this.db = new sqlite3.Database(dbFilePath, (err) => {
-            if (err) {
-                console.log('Could not connect to database', err)
-            } else {
-                console.log('Connected to database')
-            }
-        })
+        this.db = null;
     }
+
+    connect(dbFilePath) {
+        return new Promise((resolve, reject) => {
+          this.db = new sqlite3.Database(dbFilePath, (err) => {
+            if (err) {
+              console.log(`${LOG_TAG} - Could not connect to database`, err)
+              reject(err);
+            } else {
+              console.log(`${LOG_TAG} - Connected to database!`)
+              resolve(this);
+            }
+          });
+        });
+      }
 
     all(sql, params = []) {
         return new Promise((resolve, reject) => {

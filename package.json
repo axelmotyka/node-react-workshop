@@ -1,7 +1,7 @@
 {
-  "name": "recipesbackend",
+  "name": "node-react-workshop",
   "version": "1.0.0",
-  "description": "Recipe Backend",
+  "description": "Example project that includes a React + Redux frontend and a NodeJS + KOA backend",
   "dependencies": {
     "bluebird": "^3.5.2",
     "koa": "^2.5.3",
