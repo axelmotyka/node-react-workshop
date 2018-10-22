@@ -10,47 +10,43 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 const styles = {
-  card: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
+	card: {
+		maxWidth: 345,
+	},
+	media: {
+		height: 140,
+	},
 };
 
 function MediaCard(props) {
-  const { classes } = props;
-  return (
-    <Card className={classes.card}>
-      <CardActionArea>
-        <CardMedia
-          className={classes.media}
-          image="/static/images/cards/contemplative-reptile.jpg"
-          title="Contemplative Reptile"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.title}
-          </Typography>
-          <Typography component="p">
-            Description
-          </Typography>
-          <Typography component="p">
-            Content
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          add to Favourites
-        </Button>
-      </CardActions>
-    </Card>
-  );
+	const { classes } = props;
+	return (
+		<Card className={classes.card}>
+			<CardActionArea>
+				<CardMedia
+					className={classes.media}
+					image="/static/images/cards/contemplative-reptile.jpg"
+					title="Contemplative Reptile"
+				/>
+				<CardContent>
+					<Typography gutterBottom variant="h5" component="h2">
+						{props.title}
+					</Typography>
+					<Typography component="p">Description</Typography>
+					<Typography component="p">Content</Typography>
+				</CardContent>
+			</CardActionArea>
+			<CardActions>
+				<Button size="small" color="primary">
+					add to Favourites
+				</Button>
+			</CardActions>
+		</Card>
+	);
 }
 
 MediaCard.propTypes = {
-  classes: PropTypes.object.isRequired,
+	classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(MediaCard);
