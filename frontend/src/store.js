@@ -9,18 +9,18 @@ import reducer from './reducers';
 const loggerMiddleware = createLogger();
 
 function configureStore(initialState) {
-    const enhancer = composeWithDevTools(
-        applyMiddleware(
-            thunkMiddleware, // lets us dispatch() functions
-            loggerMiddleware
-        )
-    );
-    return createStore(reducer, initialState, enhancer);
+	const enhancer = composeWithDevTools(
+		applyMiddleware(
+			thunkMiddleware, // lets us dispatch() functions
+			loggerMiddleware
+		)
+	);
+	return createStore(reducer, initialState, enhancer);
 }
 
 let initialStoreState = {
-    records: [],
-    lastInsertResult: {},
+	records: [],
+	lastInsertResult: {},
 };
 
 const store = configureStore(initialStoreState);
