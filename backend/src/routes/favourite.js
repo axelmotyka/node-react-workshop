@@ -95,7 +95,7 @@ const exampleData = {
 	}
 
 
-router.get(`${BASE_URL}/favourite`, async ctx => {
+router.get(`${BASE_URL}favourite`, async ctx => {
 	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
 	return ctx.body =
 		exampleData;
