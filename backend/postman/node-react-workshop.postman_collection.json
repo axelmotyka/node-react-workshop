@@ -1,7 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6a0f59a6-5be1-46d1-80a7-3d0907eeefb4",
-		"friedlID": "3746877ab56246018681edb83832e405",
+		"_postman_id": "7de3ae9b-a382-494e-8307-e903104d7b8b",
 		"name": "node-react-workshop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -94,11 +93,61 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "https://newsapi.org/v2/everything?q=frontend&pageSize=10&sortBy=publishedAt&apiKey=3746877ab56246018681edb83832e405&language=de",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://newsapi.org/v2/everything?q=frontend&pageSize=10&sortBy=publishedAt&apiKey=3746877ab56246018681edb83832e405&language=de",
+							"protocol": "https",
+							"host": [
+								"newsapi",
+								"org"
+							],
+							"path": [
+								"v2",
+								"everything"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "frontend"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								},
+								{
+									"key": "sortBy",
+									"value": "publishedAt"
+								},
+								{
+									"key": "apiKey",
+									"value": "3746877ab56246018681edb83832e405"
+								},
+								{
+									"key": "language",
+									"value": "de"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "Spoonacular",
+			"item": []
+		},
+		{
+			"name": "newsapi",
 			"item": []
 		}
 	]
