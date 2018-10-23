@@ -1,5 +1,6 @@
 const Router = require('koa-router');
-const Dao = require('../db/SimpleDao');
+const Sqlite3Dao = require('../db/Sqlite3Dao');
+const NewsRepro = require('../db/newsRepro');
 
 const LOG_TAG = 'DaoRouter';
 const BASE_URL = '/api/dev/v1/database';
@@ -8,23 +9,25 @@ const router = new Router();
 
 router.get(`${BASE_URL}/create`, async ctx => {
 	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
-	try {
-		const dao = new Dao();
-		await dao.connect('example.sqlite3');
-		const msg = await dao.createExampleTable();
-		await dao.insertExampleData().then(rows => {
+	const dao = new Sqlite3Dao();
+	const newsRepro = new NewsRepro(dao);
+	await dao
+		.connect('example.sqlite3')
+		.then(() => newsRepro.dropTableUser())
+		.then(() => newsRepro.dropTableArtikel())
+		.then(() => newsRepro.dropTableFavourites())
+		.then(() => newsRepro.createTableUser())
+		.then(() => newsRepro.createTableArtikel())
+		.then(() => newsRepro.createTableFavourites())
+		.then(() => {
 			ctx.body = {
-				status: 'success',
-				rows: rows,
+				message: 'geht'
 			};
+		})
+		.catch(err => {
+			ctx.status = 500;
+			ctx.body = err.toString();
 		});
-	} catch (err) {
-		ctx.status = 500;
-		ctx.body = {
-			status: 'error',
-			message: err.message || 'Sorry, an error has occurred.',
-		};
-	}
 });
 
 router.get(`${BASE_URL}/select`, async ctx => {

@@ -4,7 +4,7 @@ const Promise = require('bluebird');
 const LOG_TAG = 'Sqlite3Dao';
 
 class AppDAO {
-	constructor(dbFilePath) {
+	constructor() {
 		this.db = null;
 	}
 
