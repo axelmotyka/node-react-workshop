@@ -6,10 +6,134 @@
 	},
 	"item": [
 		{
-			"name": "Backend",
+			"name": "Backend:8080",
 			"item": [
 				{
-					"name": "Create example DB",
+					"name": "database",
+					"item": [
+						{
+							"name": "Create example DB",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/api/dev/v1/database/create",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"dev",
+										"v1",
+										"database",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Select data",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "localhost:8080/api/dev/v1/database/select",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"dev",
+										"v1",
+										"database",
+										"select"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Insert",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"forename\": \"Axel-{{$timestamp}}\",\n    \"surename\": \"Motyka-{{$timestamp}}\",\n    \"email\": \"axel.motyka-{{$timestamp}}@telekom.de\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/dev/v1/database/insert/",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"dev",
+										"v1",
+										"database",
+										"insert",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "news",
+					"item": [],
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "96e348ae-5d2d-40af-9a31-ecd286b37129",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0cbe9b2c-03eb-41d8-8ace-3fb87c242456",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "newsapi.org",
+			"item": [
+				{
+					"name": "Query everithing limit=0",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -18,79 +142,40 @@
 							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:8080/api/dev/v1/database/create",
+							"raw": "https://newsapi.org/v2/everything?q=frontend&pageSize=0&sortBy=publishedAt&apiKey=3746877ab56246018681edb83832e405&language=de",
+							"protocol": "https",
 							"host": [
-								"localhost"
+								"newsapi",
+								"org"
 							],
-							"port": "8080",
 							"path": [
-								"api",
-								"dev",
-								"v1",
-								"database",
-								"create"
+								"v2",
+								"everything"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "frontend"
+								},
+								{
+									"key": "pageSize",
+									"value": "0"
+								},
+								{
+									"key": "sortBy",
+									"value": "publishedAt"
+								},
+								{
+									"key": "apiKey",
+									"value": "3746877ab56246018681edb83832e405"
+								},
+								{
+									"key": "language",
+									"value": "de"
+								}
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Select data",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": ""
 						},
-						"url": {
-							"raw": "localhost:8080/api/dev/v1/database/select",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"dev",
-								"v1",
-								"database",
-								"select"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Insert",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"forename\": \"Axel-{{$timestamp}}\",\n    \"surename\": \"Motyka-{{$timestamp}}\",\n    \"email\": \"axel.motyka-{{$timestamp}}@telekom.de\"\n}"
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/dev/v1/database/insert/",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"dev",
-								"v1",
-								"database",
-								"insert",
-								""
-							]
-						}
+						"description": "limit / pageSize = 0\n\nReturn page with empty array"
 					},
 					"response": []
 				},
@@ -140,15 +225,29 @@
 					},
 					"response": []
 				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "98f65afa-7355-4b47-aecd-c9f866e3d916",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "bb2c5319-3ede-49c7-a38b-ff051b06230c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
 			]
-		},
-		{
-			"name": "Spoonacular",
-			"item": []
-		},
-		{
-			"name": "newsapi",
-			"item": []
 		}
 	]
 }
