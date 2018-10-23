@@ -21,6 +21,7 @@ function configureStore(initialState) {
 let initialStoreState = {
 	records: [],
 	lastInsertResult: {},
+	news: []
 };
 
 const store = configureStore(initialStoreState);

@@ -32,7 +32,7 @@ class RecordsTableComponent extends Component {
 
 	updatePressed() {
 		console.log('updatePressed() => ');
-		this.props.actions.getRecords();
+		this.props.actions.searchArticles();
 	}
 
 	render() {

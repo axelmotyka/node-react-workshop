@@ -13,6 +13,18 @@ export const records = createReducer(
 	}
 );
 
+export const news = createReducer(
+	{},
+	{
+		[types.SEARCH_ARTICLES](state, action) {
+			console.log(
+				'**************** reducers/' + action.type + ' ****************'
+			);
+			return action.news.articles;
+		},
+	}
+);
+
 export const lastInsertResult = createReducer(
 	{},
 	{
