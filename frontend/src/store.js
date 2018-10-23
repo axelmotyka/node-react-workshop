@@ -21,6 +21,7 @@ function configureStore(initialState) {
 let initialStoreState = {
 	records: [],
 	lastInsertResult: {},
+	favourites: [],
 };
 
 const store = configureStore(initialStoreState);

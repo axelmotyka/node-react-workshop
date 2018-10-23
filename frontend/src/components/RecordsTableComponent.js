@@ -32,7 +32,7 @@ class RecordsTableComponent extends Component {
 
 	updatePressed() {
 		console.log('updatePressed() => ');
-		this.props.actions.getRecords();
+		this.props.actions.getFavourites();
 	}
 
 	render() {
@@ -49,25 +49,27 @@ class RecordsTableComponent extends Component {
 				<Table className={classes.table}>
 					<TableHead>
 						<TableRow>
-							<TableCell numeric>ID</TableCell>
-							<TableCell>Forename</TableCell>
-							<TableCell>Surename</TableCell>
-							<TableCell>EMail</TableCell>
+							<TableCell>Title</TableCell>
+							<TableCell>Description</TableCell>
+							<TableCell>Content</TableCell>
+							<TableCell>Author</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{this.props.records.map(record => {
+						{this.props.favourites.map(article => {
 							return (
-								<TableRow key={record.id}>
-									<TableCell numeric>{record.id}</TableCell>
+								<TableRow key={article.title}>
 									<TableCell numeric>
-										{record.forename}
+										{article.title}
 									</TableCell>
 									<TableCell numeric>
-										{record.surename}
+										{article.description}
 									</TableCell>
 									<TableCell numeric>
-										{record.email}
+										{article.content}
+									</TableCell>
+									<TableCell numeric>
+										{article.author}
 									</TableCell>
 								</TableRow>
 							);
@@ -81,13 +83,15 @@ class RecordsTableComponent extends Component {
 
 RecordsTableComponent.propTypes = {
 	classes: PropTypes.object.isRequired,
-	actions: PropTypes.func.isRequired,
+	actions: PropTypes.object.isRequired,
 	records: PropTypes.array.isRequired,
+	favourites: PropTypes.array.isRequired,
 };
 
 function mapStateToProps(state) {
 	return {
 		records: state.records,
+		favourites: state.favourites,
 	};
 }
 

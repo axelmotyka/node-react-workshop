@@ -24,3 +24,15 @@ export const lastInsertResult = createReducer(
 		},
 	}
 );
+
+export const favourites = createReducer(
+	{},
+	{
+		[types.SET_FAVOURITES](state, action) {
+			console.log(
+				'**************** reducers/' + action.type + ' ****************'
+			);
+			return action.favourites.articles;
+		},
+	}
+);
