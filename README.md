@@ -10,9 +10,13 @@
     npm i
    ```
 5. Change to `frontend` and run `npm i`
-6. change back to root and run `yarn dev` - this will start frontend and backend!
-7. When opening `http://localhost:3000` you should see the frontend!
-8. When opening `http://localhost:8080` you should see a welcome JSON from the backend.
+6. Change to `backend` and run `npm i`
+7. change back to root and run `yarn dev` - this will start frontend and backend!
+8. When opening `http://localhost:3000` you should see the frontend!
+9. When opening `http://localhost:8080` you should see a welcome JSON from the backend.
+10. In VS Code on the `Extension`-Tab add `ESLint`.
+11. In VS Code on the `Extension`-Tab add `Prettier - Code formatter`
+12. In VS Code on the `Extension`-Tab add `SQLite`
 
 ## Debugging
 Debug connection is set in the `.vscode/launch.json`. 
