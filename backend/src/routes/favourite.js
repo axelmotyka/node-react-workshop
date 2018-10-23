@@ -24,7 +24,7 @@ const exampleData = {
 				"publishedAt": "2018-10-21T15:15:58Z",
 				"content": "More posts by this contributor Every time I ponder the impact Apple Watch has had on my life, my mind always goes to Matthew Panzarinos piece published prior to the devices launch in 2015. In it, Panzarino writes about how using Apple Watch saves time; as a s… [+15270 chars]",
 				"favourite": null,
-				"like": null
+				"like":null
 			},
 			{
 				"source": {
