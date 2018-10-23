@@ -6,7 +6,6 @@ const PORT = process.env.PORT || 8080;
 const indexRoutes = require('../routes/index');
 const databaseRoutes = require('../routes/database');
 const newsRoutes = require('../routes/news');
-const favouriteRoutes = require('../routes/favourite');
 
 console.log(
 	'Server listening on routes: ' +
@@ -14,9 +13,7 @@ console.log(
 		',' +
 		databaseRoutes.stack.map(i => i.path) +
 		',' +
-		newsRoutes.stack.map(i => i.path) +
-		',' +
-		favouriteRoutes.stack.map(i => i.path)
+		newsRoutes.stack.map(i => i.path)
 );
 
 const server = app
@@ -41,8 +38,6 @@ const server = app
 	.use(databaseRoutes.allowedMethods())
 	.use(newsRoutes.routes())
 	.use(newsRoutes.allowedMethods())
-	.use(favouriteRoutes.routes())
-	.use(favouriteRoutes.allowedMethods())
 	.listen(PORT, () => {
 		console.log(`Server listening on port: ${PORT}`);
 	});

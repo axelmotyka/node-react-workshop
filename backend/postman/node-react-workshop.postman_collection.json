@@ -102,7 +102,41 @@
 				},
 				{
 					"name": "news",
-					"item": [],
+					"item": [
+						{
+							"name": "newsSearch",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/news/search?q=apple",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "apple"
+										}
+									]
+								},
+								"description": "Get JSON from backend"
+							},
+							"response": []
+						}
+					],
 					"_postman_isSubFolder": true
 				}
 			],
@@ -180,7 +214,7 @@
 					"response": []
 				},
 				{
-					"name": "https://newsapi.org/v2/everything?q=frontend&pageSize=10&sortBy=publishedAt&apiKey=3746877ab56246018681edb83832e405&language=de",
+					"name": "Query pageSize = 10 Language = de q = frontend",
 					"request": {
 						"method": "GET",
 						"header": [],
