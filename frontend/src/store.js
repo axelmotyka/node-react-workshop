@@ -19,7 +19,6 @@ function configureStore(initialState) {
 }
 
 let initialStoreState = {
-	records: [],
 	lastInsertResult: {},
 	news: []
 };
