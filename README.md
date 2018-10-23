@@ -18,6 +18,18 @@
 11. In VS Code on the `Extension`-Tab add `Prettier - Code formatter`
 12. In VS Code on the `Extension`-Tab add `SQLite`
 
+## Reset the project
+In case of some weird errors, it's a good idea to try a reset first.
+
+1. Delete `node_modules` in projects root, frontend and backend.
+2. run
+   ```
+    npm i nodemon -g
+    npm i
+   ```
+5. Change to `frontend` and run `npm i`
+6. Change to `backend` and run `npm i`
+
 ## Debugging
 Debug connection is set in the `.vscode/launch.json`. 
 If the project is started by using the `yarn dev` command from the projects root, both projects are started!
