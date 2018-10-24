@@ -11,10 +11,9 @@ class NewsContainer extends Component {
 		return (
 			<Grid
 				container
-				direction="column"
-				justify="center"
-				alignItems="flex-start"
-				spacing={16}>
+				direction="row"
+				justify="space-around"
+				alignItems="flex-start">
 				<SearchBarComponent />
 				<NewsTableComponent />
 				<FavouritesTableComponent />
