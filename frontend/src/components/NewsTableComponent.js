@@ -23,16 +23,15 @@ const styles = theme => ({
 	},
 });
 
-class RecordsTableComponent extends Component {
-	createData(forename, surename, email) {
-		let id = 0;
-		id += 1;
-		return { id, forename, surename, email };
-	}
+class NewsTableComponent extends Component {
 
 	updatePressed() {
 		console.log('updatePressed() => ');
 		this.props.actions.getFavourites();
+	}
+	updateSearch() {
+		console.log('updateSearch() => ');
+		this.props.actions.searchArticles();
 	}
 
 	render() {
@@ -43,33 +42,31 @@ class RecordsTableComponent extends Component {
 				<Button
 					variant="contained"
 					color="primary"
-					onClick={() => this.updatePressed()}>
+					onClick={() => this.updateSearch()}>
 					Update
 				</Button>
 				<Table className={classes.table}>
 					<TableHead>
 						<TableRow>
+							<TableCell numeric>ID</TableCell>
+							<TableCell>Author</TableCell>
 							<TableCell>Title</TableCell>
 							<TableCell>Description</TableCell>
-							<TableCell>Content</TableCell>
-							<TableCell>Author</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{this.props.favourites.map(article => {
+						{this.props.news.map(article => {
 							return (
-								<TableRow key={article.title}>
+								<TableRow key={article.id}>
+									<TableCell numeric>{article.id}</TableCell>
+									<TableCell numeric>
+										{article.author}
+									</TableCell>
 									<TableCell numeric>
 										{article.title}
 									</TableCell>
 									<TableCell numeric>
 										{article.description}
-									</TableCell>
-									<TableCell numeric>
-										{article.content}
-									</TableCell>
-									<TableCell numeric>
-										{article.author}
 									</TableCell>
 								</TableRow>
 							);
@@ -81,17 +78,19 @@ class RecordsTableComponent extends Component {
 	}
 }
 
-RecordsTableComponent.propTypes = {
+NewsTableComponent.propTypes = {
 	classes: PropTypes.object.isRequired,
 	actions: PropTypes.object.isRequired,
-	records: PropTypes.array.isRequired,
 	favourites: PropTypes.array.isRequired,
+	// actions: PropTypes.func.isRequired,
+	news: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
 	return {
-		records: state.records,
+		// records: state.records,
 		favourites: state.favourites,
+		news: state.news,
 	};
 }
 
@@ -105,5 +104,5 @@ export default withStyles(styles)(
 	connect(
 		mapStateToProps,
 		mapDispatchToProps
-	)(RecordsTableComponent)
+	)(NewsTableComponent)
 );

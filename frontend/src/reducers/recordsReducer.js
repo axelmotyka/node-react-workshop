@@ -1,14 +1,14 @@
 import createReducer from '../lib/createReducer';
 import * as types from '../actions/types';
 
-export const records = createReducer(
+export const news = createReducer(
 	{},
 	{
-		[types.SET_RECORDS](state, action) {
+		[types.SEARCH_ARTICLES](state, action) {
 			console.log(
 				'**************** reducers/' + action.type + ' ****************'
 			);
-			return action.records.rows;
+			return action.news.articles;
 		},
 	}
 );

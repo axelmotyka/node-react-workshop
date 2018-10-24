@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const Request = require('request-promise');
 
-class RecordsApi {
+class NewsApi {
 	static get(url) {
 		return {
 			method: 'GET',
@@ -13,22 +13,10 @@ class RecordsApi {
 		};
 	}
 
-	static post(url, body) {
-		return {
-			method: 'Post',
-			uri: url,
-			body: body,
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			json: true, // Automatically parses the JSON string in the response
-		};
-	}
-
-	static getRecords() {
+	static searchArticles() {
 		return new Promise((resolve, reject) => {
 			Request(
-				this.get('http://localhost:3000/api/dev/v1/database/select')
+				this.get('http://localhost:3000/api/v1/news/search')
 			)
 				.then(function(response) {
 					console.log(response);
@@ -41,13 +29,11 @@ class RecordsApi {
 		});
 	}
 
-	static insertRecord(record) {
+	// not used yet - maybe for future use?
+	static getFavourites() {
 		return new Promise((resolve, reject) => {
 			Request(
-				this.post(
-					'http://localhost:3000/api/dev/v1/database/insert',
-					record
-				)
+				this.get('http://localhost:3000/api/v1/news/favourite')
 			)
 				.then(function(response) {
 					console.log(response);
@@ -61,4 +47,4 @@ class RecordsApi {
 	}
 }
 
-export default RecordsApi;
+export default NewsApi;
