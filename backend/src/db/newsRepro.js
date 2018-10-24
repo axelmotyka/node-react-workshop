@@ -32,8 +32,7 @@ class NewsRepro {
 	createTableFavourites() {
 		const createStmt = `CREATE TABLE favourites(
 			userID integer NOT NULL,
-			artikelID integer NOT NULL
-			,
+			artikelID integer NOT NULL,
 			FOREIGN KEY(userID) REFERENCES user(userID),
 			FOREIGN KEY(artikelID) REFERENCES artikel(artikelID)
 			)`;
