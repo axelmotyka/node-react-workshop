@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import NewsTableComponent from '../components/NewsTableComponent';
+import FavouritesTableComponent from '../components/FavouritesTableComponent';
 import NewsCardList from '../components/NewsCardList';
 
 class NewsContainer extends Component {
@@ -14,8 +15,7 @@ class NewsContainer extends Component {
 				justify="center"
 				alignItems="flex-start"
 				spacing={16}>
-				<NewsTableComponent />
-				<NewsCardList />
+				<FavouritesTableComponent />
 			</Grid>
 		);
 	}
