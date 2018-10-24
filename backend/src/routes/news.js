@@ -23,16 +23,64 @@ router.get(`${BASE_URL}/search`, async ctx => {
 		json: true, // Automatically parses the JSON string in the response
 	};
 
-	await Request(options)
-		.then(response => {
-			ctx.body = response;
-		});
+	await Request(options).then(response => {
+		ctx.body = response;
+	});
 });
 
-router.get(`${BASE_URL}favourite`, async ctx => {
-	const exampleData = {};
+router.get(`${BASE_URL}/favourite`, async ctx => {
 	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
-	return (ctx.body = exampleData);
+
+	//TODO get favourite from database
+	const favourite = {
+		message: 'Hier würden ihre Favoriten stehen!',
+	};
+	return (ctx.body = favourite);
+});
+
+router.post(`${BASE_URL}/favourite`, async ctx => {
+	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
+
+	const favourite = ctx.request.body;
+	const author = favourite.author;
+	//TODO check incoming favourite:
+	// * all fields are available
+	// * all fields are correctly set
+
+	if (favourite.author === undefined) {
+		ctx.status = 400;
+		ctx.message = 'Author not set!';
+		return;
+	}
+	if (favourite.title === undefined) {
+		ctx.status = 400;
+		ctx.message = 'Title not set!';
+		return;
+	}
+	for (var property in favourite) {
+		if (Object.hasOwnProperty(property)) {
+			switch (property) {
+			case 'author':
+				break;
+			default:
+				ctx.status = 400;
+				ctx.message = 'Sorry but ' + val + 'is not set!';
+				return;
+			}
+		}
+	}
+	//TODO write favourite to database
+	var resultAsIdFromDatabase = 2;
+
+	//TODO set a useable response message
+	/*const response = {
+		message: resultAsIdFromDatabase + ' wurde angelegt und in Datenbank geschrieben!',
+		favourite: ctx.request.body,
+	};*/
+	const response = {
+		articleID: resultAsIdFromDatabase,
+	};
+	return (ctx.body = response);
 });
 
 module.exports = router;
