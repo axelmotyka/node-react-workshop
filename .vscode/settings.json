@@ -8,4 +8,5 @@
     "prettier.jsxBracketSameLine": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "editor.insertSpaces": false,
+    "files.eol": "\n"
 }

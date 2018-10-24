@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import NewRecordComponent from '../components/NewRecordComponent';
-import RecordsTableComponent from '../components/RecordsTableComponent';
+import NewsTableComponent from '../components/NewsTableComponent';
 import NewsCardList from '../components/NewsCardList';
 
-class RecordsContainer extends Component {
+class NewsContainer extends Component {
 	render() {
-		console.log('Rendering NewRecordContainer');
+		console.log('Rendering NewsContainer');
 
 		return (
 			<Grid
@@ -15,12 +14,11 @@ class RecordsContainer extends Component {
 				justify="center"
 				alignItems="flex-start"
 				spacing={16}>
-				<NewRecordComponent />
-				<RecordsTableComponent />
+				<NewsTableComponent />
 				<NewsCardList />
 			</Grid>
 		);
 	}
 }
 
-export default RecordsContainer;
+export default NewsContainer;

@@ -68,8 +68,9 @@ class NewRecordComponent extends Component {
 }
 
 NewRecordComponent.propTypes = {
-	actions: PropTypes.func.isRequired,
+	actions: PropTypes.object.isRequired,
 	records: PropTypes.array.isRequired,
+	news: PropTypes.array.isRequired
 };
 
 function mapDispatchToProps(dispatch) {
