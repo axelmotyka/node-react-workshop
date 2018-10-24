@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { ActionCreators } from '../actions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -12,7 +13,6 @@ const styles = theme => ({
 		marginLeft: 60,
 		marginRight: theme.spacing.unit,
 	},
-	
 });
 
 class SearchBarComponent extends Component {
@@ -20,7 +20,7 @@ class SearchBarComponent extends Component {
 		super(props);
 
 		this.state = {
-			searchTerm: ''
+			searchTerm: '',
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -39,22 +39,27 @@ class SearchBarComponent extends Component {
 		const { classes } = this.props;
 		return (
 			<div>
-				<TextField
-					name="searchTerm"
-					id="standard-search"
-					label="Suchbegriff eingeben"
-					type="search"
-					className={classes.textField}
-					margin="normal"
-					value={this.state.searchTerm}
-					onChange={this.handleChange}
-				/>
-				<Button
-					variant="contained"
-					style={{backgroundColor: '#E20074'}}
-					onClick={() => this.submitSearchTerm()}>
-					search
-				</Button>
+				<Grid 
+					item container direction="column"
+					justify="center"
+					alignItems="center">
+					<TextField
+						name="searchTerm"
+						id="standard-search"
+						label="Suchbegriff eingeben"
+						type="search"
+						className={classes.textField}
+						margin="normal"
+						value={this.state.searchTerm}
+						onChange={this.handleChange}
+					/>
+					<Button
+						variant="outlined"
+						style={{ backgroundColor: '#E20074' }}
+						onClick={() => this.submitSearchTerm()}>
+						search
+					</Button>
+				</Grid>
 			</div>
 		);
 	}
