@@ -9,15 +9,7 @@ class AppContainer extends Component {
 		console.log('Rendering AppContainer');
 		return (
 			<div>
-				<Grid
-					container
-					direction="column"
-					justify="center"
-					alignItems="flex-start"
-					spacing={16}>
-					<NewsContainer />
-					<FavouritesContainer />
-				</Grid>
+				<NewsContainer />
 			</div>
 		);
 	}
