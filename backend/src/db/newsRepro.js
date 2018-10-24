@@ -55,7 +55,7 @@ class NewsRepro {
 		return this.dao.run(dropStmt);
 	}
 
-	insertExampleData() {
+	insertExampleArticle() {
 		console.log('insert example data');
 		return new Promise((resolve, reject) => {
 			this.dao.db.serialize(function() {
@@ -78,6 +78,48 @@ class NewsRepro {
 				stmt.finalize();
 
 				this.all('SELECT * FROM artikel', function(err, rows) {
+					resolve(rows);
+				});
+			});
+		});
+	}
+
+	insertExampleUser() {
+		console.log('insert example user');
+		return new Promise((resolve, reject) => {
+			this.dao.db.serialize(function() {
+				let insertStmt1 =
+					'INSERT INTO user (userID, username) VALUES (?,?)';
+
+				var stmt1 = this.prepare(insertStmt1);
+				stmt1.run(
+					1,
+					'testuserBackend'
+				);
+				stmt1.finalize();
+
+				this.all('SELECT * FROM user', function(err, rows) {
+					resolve(rows);
+				});
+			});
+		});
+	}
+
+	insertExampleFavourite() {
+		console.log('insert example favourites');
+		return new Promise((resolve, reject) => {
+			this.dao.db.serialize(function() {
+				let insertStmt1 =
+					'INSERT INTO favourites (userID, artikelID) VALUES (?,?)';
+
+				var stmt1 = this.prepare(insertStmt1);
+				stmt1.run(
+					1,
+					1
+				);
+				stmt1.finalize();
+
+				this.all('SELECT * FROM artikel, favourites, user', function(err, rows) {
 					resolve(rows);
 				});
 			});

@@ -19,7 +19,9 @@ router.get(`${BASE_URL}/create`, async ctx => {
 		.then(() => newsRepro.createTableUser())
 		.then(() => newsRepro.createTableArtikel())
 		.then(() => newsRepro.createTableFavourites())
-		.then(() => newsRepro.insertExampleData())
+		.then(() => newsRepro.insertExampleArticle())
+		.then(() => newsRepro.insertExampleUser())
+		.then(() => newsRepro.insertExampleFavourite())
 		.then(result => {
 			ctx.body = {
 				message: 'Datenbank angelegt und befüllt!',
