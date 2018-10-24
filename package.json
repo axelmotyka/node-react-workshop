@@ -4,6 +4,7 @@
   "description": "Example project that includes a React + Redux frontend and a NodeJS + KOA backend",
   "dependencies": {
     "bluebird": "^3.5.2",
+    "js": "^0.1.0",
     "koa": "^2.5.3",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",

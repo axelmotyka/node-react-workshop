@@ -25,8 +25,14 @@ router.get(`${BASE_URL}/search`, async ctx => {
 
 	await Request(options)
 		.then(response => {
+			/* Add hash value to response
+			const crypto = require('crypto');
+			response.forEach(function(article) {
+				const string2Hash = '' + article['date'] + article['url'];
+				article['md5Hash'] = crypto.createHash('md5').update(string2Hash).digest('base64');
 			ctx.body = response;
 		});
+		*/
 });
 
 router.get(`${BASE_URL}favourite`, async ctx => {
