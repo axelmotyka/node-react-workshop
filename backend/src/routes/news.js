@@ -101,7 +101,19 @@ router.post(`${BASE_URL}/favourite`, async ctx => {
 		ctx.status = 400;
 		ctx.message = 'md5Hash not set!';
 		return;
-	}*/
+	}
+	
+		let keyArray=["id","name","author","title","description","url","urlToImage","publishedAt","content"];
+	for (var property in favourite) {
+		if (Object.hasOwnProperty(property)!==keyArray[i]) {
+				ctx.status = 400;
+				ctx.message = 'Sorry but ' + keyArray[i] + 'is not set!';
+				i = i+1;
+				return;
+			}
+		}
+		
+	*/
 
 	//TODO write favourite to database
 
