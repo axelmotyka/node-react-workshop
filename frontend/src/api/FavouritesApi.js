@@ -28,7 +28,7 @@ class FavouritesApi {
 	static getFavourites() {
 		return new Promise((resolve, reject) => {
 			Request(
-				this.get('http://localhost:3000/api/v1/news/search')
+				this.get('http://localhost:3000/api/v1/news/search?q=apple')
 			)
 				.then(function(response) {
 					console.log(response);

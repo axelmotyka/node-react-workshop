@@ -23,15 +23,11 @@ const styles = theme => ({
 	},
 });
 
-class NewsTableComponent extends Component {
+class FavouritesTableComponent extends Component {
 
-	updatePressed() {
+	updateFavourites() {
 		console.log('updatePressed() => ');
 		this.props.actions.getFavourites();
-	}
-	updateSearch() {
-		console.log('updateSearch() => ');
-		this.props.actions.searchArticles();
 	}
 
 	render() {
@@ -42,20 +38,20 @@ class NewsTableComponent extends Component {
 				<Button
 					variant="contained"
 					color="primary"
-					onClick={() => this.updateSearch()}>
-					Update
+					onClick={() => this.updateFavourites()}>
+					UpdateFavs
 				</Button>
 				<Table className={classes.table}>
 					<TableHead>
 						<TableRow>
 							<TableCell numeric>ID</TableCell>
 							<TableCell>Author</TableCell>
-							<TableCell>Title</TableCell>
+							<TableCell>Title2</TableCell>
 							<TableCell>Description</TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
-						{this.props.news.map(article => {
+						{this.props.favourites.map(article => {
 							return (
 								<TableRow key={article.id}>
 									<TableCell numeric>{article.id}</TableCell>
@@ -78,7 +74,7 @@ class NewsTableComponent extends Component {
 	}
 }
 
-NewsTableComponent.propTypes = {
+FavouritesTableComponent.propTypes = {
 	classes: PropTypes.object.isRequired,
 	actions: PropTypes.object.isRequired,
 	favourites: PropTypes.array.isRequired,
@@ -90,7 +86,6 @@ function mapStateToProps(state) {
 	return {
 		// records: state.records,
 		favourites: state.favourites,
-		news: state.news,
 	};
 }
 
@@ -104,5 +99,5 @@ export default withStyles(styles)(
 	connect(
 		mapStateToProps,
 		mapDispatchToProps
-	)(NewsTableComponent)
+	)(FavouritesTableComponent)
 );

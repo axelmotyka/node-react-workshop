@@ -47,6 +47,7 @@ function MediaCard(props) {
 
 MediaCard.propTypes = {
 	classes: PropTypes.object.isRequired,
+	title: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(MediaCard);
