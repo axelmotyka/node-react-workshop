@@ -23,7 +23,8 @@ class NewsRepro {
 			url text,
 			urlToImage text,
 			publishedAt text NOT NULL,
-			content text
+			content text,
+			md5-Hash text UNIQUE
 		)`;
 
 		return this.dao.run(createStmt);
