@@ -13,10 +13,10 @@ class NewsApi {
 		};
 	}
 
-	static searchArticles() {
+	static searchArticles(searchTerm) {
 		return new Promise((resolve, reject) => {
 			Request(
-				this.get('http://localhost:3000/api/v1/news/search?q=apple')
+				this.get('http://localhost:3000/api/v1/news/search?q='+ searchTerm)
 			)
 				.then(function(response) {
 					console.log(response);
