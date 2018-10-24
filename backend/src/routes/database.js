@@ -19,14 +19,12 @@ router.get(`${BASE_URL}/create`, async ctx => {
 		.then(() => newsRepro.createTableUser())
 		.then(() => newsRepro.createTableArtikel())
 		.then(() => newsRepro.createTableFavourites())
-		.then(() => {
+		.then(() => newsRepro.insertExampleData())
+		.then(result => {
 			ctx.body = {
-				message: 'geht'
+				message: 'Datenbank angelegt und befüllt!',
+				articles: result
 			};
-		})
-		.catch(err => {
-			ctx.status = 500;
-			ctx.body = err.toString();
 		});
 });
 
