@@ -1,10 +1,10 @@
 import * as types from './types';
 import NewsApi from '../api/NewsApi';
 
-export function searchArticles() {
-	console.log('**************** actions/searchArticles() ****************');
+export function searchArticles(searchTerm) {
+	console.log('**************** actions/searchArticles(' + searchTerm + ') ****************');
 	return (dispatch, getState) => {
-		return NewsApi.searchArticles().then(response => {
+		return NewsApi.searchArticles(searchTerm).then(response => {
 			dispatch(setArticles(response));
 		});
 	};
