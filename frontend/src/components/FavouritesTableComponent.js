@@ -78,8 +78,6 @@ FavouritesTableComponent.propTypes = {
 	classes: PropTypes.object.isRequired,
 	actions: PropTypes.object.isRequired,
 	favourites: PropTypes.array.isRequired,
-	// actions: PropTypes.func.isRequired,
-	news: PropTypes.array.isRequired
 };
 
 function mapStateToProps(state) {
