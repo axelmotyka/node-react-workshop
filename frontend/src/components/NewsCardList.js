@@ -98,7 +98,6 @@ NewsCardList.propTypes = {
 
 function mapStateToProps(state) {
 	return {
-		// records: state.records,
 		favourites: state.favourites,
 		news: state.news,
 	};

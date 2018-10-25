@@ -42,7 +42,7 @@ export function setFavourites(favourites) {
 }
 
 export function insertFavourites(favourites) {
-	console.log('**************** actions/insertRecord() ****************');
+	console.log('**************** actions/insertFavourites() ****************');
 	return (dispatch, getState) => {
 		return AppApi.insertFavourites(favourites).then(response => {
 			dispatch(insertFavouritesResult(response));
