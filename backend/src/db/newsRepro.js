@@ -76,10 +76,8 @@ class NewsRepro {
 					'https://www.news.com.au/lifestyle/real-life/news-life/teens-bobbed-for-apples-in-urine-at-boozy-initiation-ceremony/news-story/fb50ad108a2bf67ff2998eca06ed1ab6/2018-10-24T08:11:53Z'
 				);
 				stmt.finalize();
-
-				this.all('SELECT * FROM artikel', function(err, rows) {
-					resolve(rows);
-				});
+				
+				resolve(true);
 			});
 		});
 	}
@@ -88,19 +86,17 @@ class NewsRepro {
 		console.log('insert example user');
 		return new Promise((resolve, reject) => {
 			this.dao.db.serialize(function() {
-				let insertStmt1 =
+				let insertStmt =
 					'INSERT INTO user (userID, username) VALUES (?,?)';
 
-				var stmt1 = this.prepare(insertStmt1);
-				stmt1.run(
+				var stmt = this.prepare(insertStmt);
+				stmt.run(
 					1,
 					'testuserBackend'
 				);
-				stmt1.finalize();
-
-				this.all('SELECT * FROM user', function(err, rows) {
-					resolve(rows);
-				});
+				stmt.finalize();
+				
+				resolve(true);
 			});
 		});
 	}
@@ -109,19 +105,17 @@ class NewsRepro {
 		console.log('insert example favourites');
 		return new Promise((resolve, reject) => {
 			this.dao.db.serialize(function() {
-				let insertStmt1 =
+				let insertStmt =
 					'INSERT INTO favourites (userID, artikelID) VALUES (?,?)';
 
-				var stmt1 = this.prepare(insertStmt1);
-				stmt1.run(
+				var stmt = this.prepare(insertStmt);
+				stmt.run(
 					1,
 					1
 				);
-				stmt1.finalize();
-
-				this.all('SELECT * FROM artikel, favourites, user', function(err, rows) {
-					resolve(rows);
-				});
+				stmt.finalize();
+				
+				resolve(true);
 			});
 		});
 	}
