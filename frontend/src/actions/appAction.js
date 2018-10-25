@@ -26,32 +26,12 @@ export function insertFavourites(addToFavouriteArticle) {
 	};
 }
 
-export function getFavourites() {
-	console.log('**************** actions/getFavourites() ****************');
-	return (dispatch, getState) => {
-		return AppApi.getFavourites().then(response => {
-			dispatch(setFavourites(response));
-		});
-	};
-}
-
-export function addToFavourites() {
-	console.log('**************** actions/getFavourites() ****************');
-	return (dispatch, getState) => {
-		return AppApi.addToFavourites().then(response => {
-			dispatch(setFavourites(response));
-		});
-	};
-}
-
 export function setFavourites(favourites) {
 	return {
 		type: types.SET_FAVOURITES,
 		favourites,
 	};
 }
-
-
 
 export function insertFavouritesResult(result) {
 	return {

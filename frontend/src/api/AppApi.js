@@ -13,6 +13,18 @@ class AppApi {
 		};
 	}
 
+	static post(url, body) {
+		return {
+			method: 'Post',
+			uri: url,
+			body: body,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			json: true, // Automatically parses the JSON string in the response
+		};
+	}
+
 	static searchArticles(searchTerm) {
 		return new Promise((resolve, reject) => {
 			Request(
@@ -28,74 +40,13 @@ class AppApi {
 				});
 		});
 	}
-	static post(url, body) {
-		return {
-			method: 'Post',
-			uri: url,
-			body: body,
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			json: true, // Automatically parses the JSON string in the response
-		};
-	}
-
-	static getFavourites() {
-		return new Promise((resolve, reject) => {
-			Request(
-				this.get('http://localhost:3000/api/v1/news/search?q=apple')
-			)
-				.then(function(response) {
-					console.log(response);
-					resolve(response);
-				})
-				.catch(function(err) {
-					console.error(err);
-					reject(err);
-				});
-		});
-	}
-
-	static addToFavourites() {
-		return new Promise((resolve, reject) => {
-			Request(
-				this.get('http://localhost:3000/api/v1/news/search?q=apple')
-			)
-				.then(function(response) {
-					console.log(response);
-					resolve(response);
-				})
-				.catch(function(err) {
-					console.error(err);
-					reject(err);
-				});
-		});
-	}
-
-	static insertRecord(record) {
+	
+	static insertFavourites(favouriteArticle) {
 		return new Promise((resolve, reject) => {
 			Request(
 				this.post(
-					'http://localhost:3000/api/v1/database/insert/',
-					record
-				)
-			)
-				.then(function(response) {
-					console.log(response);
-					resolve(response);
-				})
-				.catch(function(err) {
-					console.error(err);
-					reject(err);
-				});
-		});
-	}
-	static insertFavourites(record) {
-		return new Promise((resolve, reject) => {
-			Request(
-				this.post(
-					'http://localhost:3000/api/v1/database/insert/',
-					record
+					'http://localhost:3000/api/v1/news/favourite?userID=123',
+					favouriteArticle
 				)
 			)
 				.then(function(response) {
