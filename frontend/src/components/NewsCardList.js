@@ -45,7 +45,7 @@ class NewsCardList extends Component {
 				alignItems="center">
 				{this.props.news.map(article => {
 					return (
-						<Card className={classes.card}>
+						<Card className={classes.card} key={article.title}>
 							<CardActionArea>
 								<CardMedia
 									className={classes.media}
