@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e4f5d7ba-a554-49e5-b449-eacbd5a301e8",
+		"_postman_id": "ec0a3f9c-68b1-492e-baec-e4b0ab41cf3e",
 		"name": "node-react-workshop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,40 +11,6 @@
 				{
 					"name": "database",
 					"item": [
-						{
-							"name": "Insert",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"type": "text",
-										"value": "application/json"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"forename\": \"Axel-{{$timestamp}}\",\n    \"surename\": \"Motyka-{{$timestamp}}\",\n    \"email\": \"axel.motyka-{{$timestamp}}@telekom.de\"\n}"
-								},
-								"url": {
-									"raw": "http://localhost:8080/api/dev/v1/database/insert/",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"dev",
-										"v1",
-										"database",
-										"insert",
-										""
-									]
-								}
-							},
-							"response": []
-						},
 						{
 							"name": "create database dummy / one article",
 							"event": [
@@ -67,7 +33,7 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/api/dev/v1/database/create",
+									"raw": "http://localhost:8080/api/v1/database/create",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -75,7 +41,6 @@
 									"port": "8080",
 									"path": [
 										"api",
-										"dev",
 										"v1",
 										"database",
 										"create"
@@ -98,39 +63,6 @@
 								"body": {
 									"mode": "raw",
 									"raw": ""
-								},
-								"url": {
-									"raw": "http://localhost:8080/api/v1/news/favourite",
-									"protocol": "http",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"v1",
-										"news",
-										"favourite"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "POST favourite article",
-							"request": {
-								"method": "POST",
-								"header": [
-									{
-										"key": "Content-Type",
-										"name": "Content-Type",
-										"value": "application/json",
-										"type": "text"
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n\"source\": {\n\"id\": null,\n\"name\": \"Prnewswire.com\"\n},\n\"author\": \"FinancialNewsMedia.com\",\n\"title\": \"Consortium Aims at Speeding up Adoption of Cryptocurrencies Backed Government Currencies\",\n\"description\": \"PALM BEACH, Florida, October 24, 2018 /PRNewswire/ -- Financialnewsmedia.com News Commentary Many do not know the fact that Cryptocurrency has been making news since the inception of the World Wide Web and recently has aimed to disrupt operations in the virtu…\",\n\"url\": \"https://www.prnewswire.com/news-releases/consortium-aims-at-speeding-up-adoption-of-cryptocurrencies-backed-government-currencies-875304203.html\",\n\"urlToImage\": \"/content/dam/prnewswire/common/prn_facebook_sharing_logo.jpg\",\n\"publishedAt\": \"2018-10-24T12:45:00Z\",\n\"content\": \"PALM BEACH, Florida, October 24, 2018 /PRNewswire/ -- Financialnewsmedia.com News Commentary Many do not know the fact that Cryptocurrency has been making news since the inception of the World Wide Web and recently has aimed to disrupt operations in the virtu… [+8781 chars]\"\n}"
 								},
 								"url": {
 									"raw": "http://localhost:8080/api/v1/news/favourite",
@@ -176,12 +108,6 @@
 										"v1",
 										"news",
 										"favourite"
-									],
-									"query": [
-										{
-											"key": "",
-											"value": ""
-										}
 									]
 								}
 							},
