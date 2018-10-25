@@ -35,10 +35,106 @@ router.get(`${BASE_URL}/search`, async ctx => {
 		*/
 });
 
-router.get(`${BASE_URL}favourite`, async ctx => {
-	const exampleData = {};
+router.get(`${BASE_URL}/favourite`, async ctx => {
 	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
-	return (ctx.body = exampleData);
+
+	//TODO get favourite from database
+	const favourite = {
+		message: 'Hier würden ihre Favoriten stehen!',
+	};
+	return (ctx.body = favourite);
+});
+
+router.post(`${BASE_URL}/favourite`, async ctx => {
+	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
+
+	const favourite = ctx.request.body;
+	const author = favourite.author;
+	//TODO check incoming favourite:
+	// * all fields are available
+	// * all fields are correctly set
+
+	if (favourite.author === undefined) {
+		ctx.status = 400;
+		ctx.message = 'Author not set!';
+		return;
+	}
+	if (favourite.title === undefined) {
+		ctx.status = 400;
+		ctx.message = 'Title not set!';
+		return;
+	}
+	/*if (favourite.artikelID === undefined) {
+		ctx.status = 400;
+		ctx.message = 'ArtikelID not set!';
+		return;
+	}
+	if (favourite.sourceID === undefined) {
+		ctx.status = 400;
+		ctx.message = 'SourceID not set!';
+		return;
+	}
+	if (favourite.sourceName === undefined) {
+		ctx.status = 400;
+		ctx.message = 'SourceName not set!';
+		return;
+	}*/
+	if (favourite.description === undefined) {
+		ctx.status = 400;
+		ctx.message = 'Description not set!';
+		return;
+	}
+	if (favourite.url === undefined) {
+		ctx.status = 400;
+		ctx.message = 'URL not set!';
+		return;
+	}
+	if (favourite.urlToImage === undefined) {
+		ctx.status = 400;
+		ctx.message = 'URLtoImage not set!';
+		return;
+	}
+	if (favourite.publishedAt === undefined) {
+		ctx.status = 400;
+		ctx.message = 'PublishedAt not set!';
+		return;
+	}
+	if (favourite.content === undefined) {
+		ctx.status = 400;
+		ctx.message = 'Content not set!';
+		return;
+	}/*
+	if (favourite.md5Hash === undefined) {
+		ctx.status = 400;
+		ctx.message = 'md5Hash not set!';
+		return;
+	}
+	
+		let keyArray=["id","name","author","title","description","url","urlToImage","publishedAt","content"];
+	for (var property in favourite) {
+		if (Object.hasOwnProperty(property)!==keyArray[i]) {
+				ctx.status = 400;
+				ctx.message = 'Sorry but ' + keyArray[i] + 'is not set!';
+				i = i+1;
+				return;
+			}
+		}
+		
+	*/
+
+	//TODO write favourite to database
+
+	var resultAsIdFromDatabase = 2;
+
+	//TODO set a useable response message
+	/*const response = {
+		message: resultAsIdFromDatabase + ' wurde angelegt und in Datenbank geschrieben!',
+		favourite: ctx.request.body,
+	};*/
+	const response = {
+		articleID: resultAsIdFromDatabase,
+	};
+	return (ctx.body = response);
 });
 
 module.exports = router;
