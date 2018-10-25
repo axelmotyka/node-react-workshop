@@ -1,11 +1,23 @@
 const Promise = require('bluebird');
 const Request = require('request-promise');
 
-class NewsApi {
+class AppApi {
 	static get(url) {
 		return {
 			method: 'GET',
 			uri: url,
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			json: true, // Automatically parses the JSON string in the response
+		};
+	}
+
+	static post(url, body) {
+		return {
+			method: 'Post',
+			uri: url,
+			body: body,
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -28,12 +40,14 @@ class NewsApi {
 				});
 		});
 	}
-
-	// not used yet - maybe for future use?
-	static getFavourites() {
+	
+	static insertFavourites(favouriteArticle) {
 		return new Promise((resolve, reject) => {
 			Request(
-				this.get('http://localhost:3000/api/v1/news/favourite')
+				this.post(
+					'http://localhost:3000/api/v1/news/favourite?userID=123',
+					favouriteArticle
+				)
 			)
 				.then(function(response) {
 					console.log(response);
@@ -47,4 +61,4 @@ class NewsApi {
 	}
 }
 
-export default NewsApi;
+export default AppApi;
