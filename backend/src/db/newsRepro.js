@@ -94,6 +94,10 @@ class NewsRepro {
 					1,
 					'testuserBackend'
 				);
+				stmt.run(
+					2,
+					'testuserFrontend'
+				);
 				stmt.finalize();
 				
 				resolve(true);
