@@ -40,7 +40,7 @@ class SearchBarComponent extends Component {
 		return (
 			<div>
 				<Grid 
-					item container direction="column"
+					item container direction="row"
 					justify="center"
 					alignItems="center">
 					<TextField
