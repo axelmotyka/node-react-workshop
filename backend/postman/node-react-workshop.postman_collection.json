@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7de3ae9b-a382-494e-8307-e903104d7b8b",
+		"_postman_id": "e4f5d7ba-a554-49e5-b449-eacbd5a301e8",
 		"name": "node-react-workshop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -11,58 +11,6 @@
 				{
 					"name": "database",
 					"item": [
-						{
-							"name": "Create example DB",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "localhost:8080/api/dev/v1/database/create",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"dev",
-										"v1",
-										"database",
-										"create"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Select data",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": ""
-								},
-								"url": {
-									"raw": "localhost:8080/api/dev/v1/database/select",
-									"host": [
-										"localhost"
-									],
-									"port": "8080",
-									"path": [
-										"api",
-										"dev",
-										"v1",
-										"database",
-										"select"
-									]
-								}
-							},
-							"response": []
-						},
 						{
 							"name": "Insert",
 							"request": {
@@ -96,15 +44,21 @@
 								}
 							},
 							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
-					"name": "news",
-					"item": [
+						},
 						{
-							"name": "newsSearch",
+							"name": "create database dummy / one article",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "e78a02df-cdf2-4b12-8d47-ba990a9e2cd0",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"request": {
 								"method": "GET",
 								"header": [],
@@ -113,7 +67,40 @@
 									"raw": ""
 								},
 								"url": {
-									"raw": "http://localhost:8080/api/v1/news/search?q=apple",
+									"raw": "http://localhost:8080/api/dev/v1/database/create",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"dev",
+										"v1",
+										"database",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "news",
+					"item": [
+						{
+							"name": "GET favourite",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/news/favourite",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -123,16 +110,80 @@
 										"api",
 										"v1",
 										"news",
-										"search"
+										"favourite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST favourite article",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"source\": {\n\"id\": null,\n\"name\": \"Prnewswire.com\"\n},\n\"author\": \"FinancialNewsMedia.com\",\n\"title\": \"Consortium Aims at Speeding up Adoption of Cryptocurrencies Backed Government Currencies\",\n\"description\": \"PALM BEACH, Florida, October 24, 2018 /PRNewswire/ -- Financialnewsmedia.com News Commentary Many do not know the fact that Cryptocurrency has been making news since the inception of the World Wide Web and recently has aimed to disrupt operations in the virtu…\",\n\"url\": \"https://www.prnewswire.com/news-releases/consortium-aims-at-speeding-up-adoption-of-cryptocurrencies-backed-government-currencies-875304203.html\",\n\"urlToImage\": \"/content/dam/prnewswire/common/prn_facebook_sharing_logo.jpg\",\n\"publishedAt\": \"2018-10-24T12:45:00Z\",\n\"content\": \"PALM BEACH, Florida, October 24, 2018 /PRNewswire/ -- Financialnewsmedia.com News Commentary Many do not know the fact that Cryptocurrency has been making news since the inception of the World Wide Web and recently has aimed to disrupt operations in the virtu… [+8781 chars]\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/news/favourite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"favourite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post favourite with 1 article",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"source\": {\n\t\t\"id\": \"testnews.de\",\n\t\t\"name\": \"testnews.de\"\n\t},\n\t\"author\": \"\",\n\t\"title\": \"Test Title\",\n\t\"description\": \"Bla blabla bla.\",\n\t\"url\": \"http://www.telekom.de\",\n\t\"urlToImage\": \"https://cdn.newsapi.com.au/image/v1/8619e05cb0d0df10d1a42a3d762a778c?width=650\",\n\t\"publishedAt\": \"2018-10-24T08:11:53Z\",\n\t\"content\": \"STUDENTS bobbed for apples in a mixture of booze and urine as part of a drink-fuelled initiation ceremony where a student died, an inquest has heard. First-year Economics student Ed Farmer, 20, died after being found slumped in a corridor not breathing at the… [+1659 chars]\",\n\t\"md5Hash\": \"demohash-keinechterwert\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/news/favourite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"favourite"
 									],
 									"query": [
 										{
-											"key": "q",
-											"value": "apple"
+											"key": "",
+											"value": ""
 										}
 									]
-								},
-								"description": "Get JSON from backend"
+								}
 							},
 							"response": []
 						}

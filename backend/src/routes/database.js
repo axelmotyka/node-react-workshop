@@ -3,7 +3,7 @@ const Sqlite3Dao = require('../db/Sqlite3Dao');
 const NewsRepro = require('../db/newsRepro');
 
 const LOG_TAG = 'DaoRouter';
-const BASE_URL = '/api/dev/v1/database';
+const BASE_URL = '/api/v1/database';
 
 const router = new Router();
 
@@ -19,14 +19,13 @@ router.get(`${BASE_URL}/create`, async ctx => {
 		.then(() => newsRepro.createTableUser())
 		.then(() => newsRepro.createTableArtikel())
 		.then(() => newsRepro.createTableFavourites())
-		.then(() => {
+		.then(() => newsRepro.insertExampleArticle())
+		.then(() => newsRepro.insertExampleUser())
+		.then(() => newsRepro.insertExampleFavourite())
+		.then(result => {
 			ctx.body = {
-				message: 'geht'
+				message: 'Datenbank angelegt und befüllt!'
 			};
-		})
-		.catch(err => {
-			ctx.status = 500;
-			ctx.body = err.toString();
 		});
 });
 
