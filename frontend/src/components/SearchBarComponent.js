@@ -44,6 +44,13 @@ class SearchBarComponent extends Component {
 					justify="center"
 					alignItems="center">
 					<TextField
+						onKeyPress={(ev) => {
+							console.log(`Pressed keyCode ${ev.key}`);
+							if (ev.key === 'Enter') {
+								this.submitSearchTerm();
+								ev.preventDefault();
+							}
+						}}
 						name="searchTerm"
 						id="standard-search"
 						label="Suchbegriff eingeben"
