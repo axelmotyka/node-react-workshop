@@ -20,7 +20,7 @@ class SearchBarComponent extends Component {
 		super(props);
 
 		this.state = {
-			searchTerm: '',
+			searchTerm: 'Axel',
 		};
 
 		this.handleChange = this.handleChange.bind(this);
