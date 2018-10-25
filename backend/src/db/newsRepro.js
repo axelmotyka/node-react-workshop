@@ -90,7 +90,14 @@ class NewsRepro {
 					'INSERT INTO user (userID, username) VALUES (?,?)';
 
 				var stmt = this.prepare(insertStmt);
-				stmt.run(1, 'testuserBackend');
+				stmt.run(
+					1,
+					'testuserBackend'
+				);
+				stmt.run(
+					2,
+					'testuserFrontend'
+				);
 				stmt.finalize();
 
 				resolve(true);
