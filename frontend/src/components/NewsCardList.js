@@ -33,10 +33,22 @@ const styles = theme => ({
 });
 
 class NewsCardList extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			addToFavouriteArticle: 'diesen Artikel finde ich toll',
+		};
+
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	handleChange(event) {
+		this.setState({ [event.target.name]: event.target.value });
+	}
 
 	updateFavourites() {
-		console.log('updatePressed() => ');
-		this.props.actions.insertFavourites();
+		console.log('addToFavouritePressed() => ');
+		this.props.actions.insertFavourites(this.state.addToFavouriteArticle);
 	}
 
 	render() {

@@ -16,6 +16,16 @@ export function setArticles(news) {
 		news,
 	};
 }
+
+export function insertFavourites(addToFavouriteArticle) {
+	console.log('**************** actions/insertFavourites(' + addToFavouriteArticle + ') ****************');
+	return (dispatch, getState) => {
+		return AppApi.insertFavourites(addToFavouriteArticle).then(response => {
+			dispatch(insertFavouritesResult(response));
+		});
+	};
+}
+
 export function getFavourites() {
 	console.log('**************** actions/getFavourites() ****************');
 	return (dispatch, getState) => {
@@ -41,14 +51,7 @@ export function setFavourites(favourites) {
 	};
 }
 
-export function insertFavourites(favourites) {
-	console.log('**************** actions/insertFavourites() ****************');
-	return (dispatch, getState) => {
-		return AppApi.insertFavourites(favourites).then(response => {
-			dispatch(insertFavouritesResult(response));
-		});
-	};
-}
+
 
 export function insertFavouritesResult(result) {
 	return {
