@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ccc1fb77-dc1a-4b4d-9cdb-4f83242ded24",
+		"_postman_id": "e4f5d7ba-a554-49e5-b449-eacbd5a301e8",
 		"name": "node-react-workshop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -144,6 +144,44 @@
 										"v1",
 										"news",
 										"favourite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Post favourite with 1 article",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"source\": {\n\t\t\"id\": \"testnews.de\",\n\t\t\"name\": \"testnews.de\"\n\t},\n\t\"author\": \"\",\n\t\"title\": \"Test Title\",\n\t\"description\": \"Bla blabla bla.\",\n\t\"url\": \"http://www.telekom.de\",\n\t\"urlToImage\": \"https://cdn.newsapi.com.au/image/v1/8619e05cb0d0df10d1a42a3d762a778c?width=650\",\n\t\"publishedAt\": \"2018-10-24T08:11:53Z\",\n\t\"content\": \"STUDENTS bobbed for apples in a mixture of booze and urine as part of a drink-fuelled initiation ceremony where a student died, an inquest has heard. First-year Economics student Ed Farmer, 20, died after being found slumped in a corridor not breathing at the… [+1659 chars]\",\n\t\"md5Hash\": \"demohash-keinechterwert\"\n}"
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/news/favourite",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"news",
+										"favourite"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": ""
+										}
 									]
 								}
 							},
