@@ -94,7 +94,7 @@ class AppApi {
 		return new Promise((resolve, reject) => {
 			Request(
 				this.post(
-					'http://localhost:3000/api/v1/database/insert/',
+					'http://localhost:3000/api/v1/news/favourite/',
 					record
 				)
 			)

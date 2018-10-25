@@ -36,19 +36,23 @@ class NewsCardList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			addToFavouriteArticle: 'diesen Artikel finde ich toll',
+			addToFavouriteArticle: '',
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(event) {
+		console.log(event.target.name);
+		console.log(event.target.value);
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
-	updateFavourites() {
+	updateFavourites(article) {
 		console.log('addToFavouritePressed() => ');
-		this.props.actions.insertFavourites(this.state.addToFavouriteArticle);
+		console.log(article);
+
+		this.props.actions.insertFavourites(article);
 	}
 
 	render() {
@@ -90,7 +94,9 @@ class NewsCardList extends Component {
 								<Button
 									size="small"
 									color="primary"
-									onClick={() => this.updateFavourites()}>
+									onClick={() =>
+										this.updateFavourites(article)
+									}>
 									Add To Favourites
 								</Button>
 							</CardActions>
