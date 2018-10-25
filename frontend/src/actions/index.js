@@ -1,4 +1,3 @@
-import * as FavouriteAction from './favouriteAction';
-import * as NewsAction from './newsAction';
+import * as AppAction from './appAction';
 
-export const ActionCreators = Object.assign({}, FavouriteAction, NewsAction);
+export const ActionCreators = Object.assign({}, AppAction);

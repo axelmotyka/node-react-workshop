@@ -33,6 +33,12 @@ const styles = theme => ({
 });
 
 class NewsCardList extends Component {
+
+	updateFavourites() {
+		console.log('updatePressed() => ');
+		this.props.actions.insertFavourites();
+	}
+
 	render() {
 		const { classes } = this.props;
 		console.log('******* NEWSCARDLIST.RENDER()');
@@ -69,7 +75,10 @@ class NewsCardList extends Component {
 								</CardContent>
 							</CardActionArea>
 							<CardActions>
-								<Button size="small" color="primary">
+								<Button
+									size="small"
+									color="primary"
+									onClick={() => this.updateFavourites()}>
 									Add To Favourites
 								</Button>
 							</CardActions>
@@ -84,6 +93,7 @@ class NewsCardList extends Component {
 NewsCardList.propTypes = {
 	classes: PropTypes.object.isRequired,
 	news: PropTypes.array.isRequired,
+	actions: PropTypes.object.isRequired,
 };
 
 function mapStateToProps(state) {
