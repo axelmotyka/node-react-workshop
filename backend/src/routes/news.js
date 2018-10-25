@@ -1,7 +1,7 @@
 const Router = require('koa-router');
-const Promise = require('bluebird');
 const Request = require('request-promise');
-const Dao = require('../db/SimpleDao');
+const Sqlite3Dao = require('../db/Sqlite3Dao');
+const NewsRepro = require('../db/newsRepro');
 
 const LOG_TAG = 'NewsRouter';
 const BASE_URL = '/api/v1/news';
@@ -27,7 +27,10 @@ router.get(`${BASE_URL}/search`, async ctx => {
 		const crypto = require('crypto');
 		response.articles.forEach(function(article) {
 			const string2Hash = article['publishedAt'] + article['url'];
-			article['md5Hash'] = crypto.createHash('md5').update(string2Hash).digest('base64');
+			article['md5Hash'] = crypto
+				.createHash('md5')
+				.update(string2Hash)
+				.digest('base64');
 		});
 		ctx.body = response;
 	});
@@ -47,10 +50,6 @@ router.post(`${BASE_URL}/favourite`, async ctx => {
 	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
 
 	const favourite = ctx.request.body;
-	const author = favourite.author;
-	//TODO check incoming favourite:
-	// * all fields are available
-	// * all fields are correctly set
 
 	if (favourite.author === undefined) {
 		ctx.status = 400;
@@ -62,21 +61,16 @@ router.post(`${BASE_URL}/favourite`, async ctx => {
 		ctx.message = 'Title not set!';
 		return;
 	}
-	/*if (favourite.artikelID === undefined) {
-		ctx.status = 400;
-		ctx.message = 'ArtikelID not set!';
-		return;
-	}
-	if (favourite.sourceID === undefined) {
+	if (favourite.source.id === undefined) {
 		ctx.status = 400;
 		ctx.message = 'SourceID not set!';
 		return;
 	}
-	if (favourite.sourceName === undefined) {
+	if (favourite.source.name === undefined) {
 		ctx.status = 400;
 		ctx.message = 'SourceName not set!';
 		return;
-	}*/
+	}
 	if (favourite.description === undefined) {
 		ctx.status = 400;
 		ctx.message = 'Description not set!';
@@ -101,38 +95,34 @@ router.post(`${BASE_URL}/favourite`, async ctx => {
 		ctx.status = 400;
 		ctx.message = 'Content not set!';
 		return;
-	} /*
+	}
 	if (favourite.md5Hash === undefined) {
 		ctx.status = 400;
 		ctx.message = 'md5Hash not set!';
 		return;
 	}
-	
-		let keyArray=["id","name","author","title","description","url","urlToImage","publishedAt","content"];
-	for (var property in favourite) {
-		if (Object.hasOwnProperty(property)!==keyArray[i]) {
-				ctx.status = 400;
-				ctx.message = 'Sorry but ' + keyArray[i] + 'is not set!';
-				i = i+1;
+
+	const dao = new Sqlite3Dao();
+	const newsRepro = new NewsRepro(dao);
+
+	await dao
+		.connect('example.sqlite3')
+		.then(() => newsRepro.selectArtikelByMD5(favourite.md5Hash))
+		.then(count => {
+			if (count[0]['COUNT(*)'] > 0) {
+				ctx.status = 409; // HHTP STATUS CODE conflict
+				ctx.body = false;
 				return;
 			}
-		}
-		
-	*/
+			return newsRepro
+				.insertFavouriteArticle(favourite)
+				.then(() => (ctx.body = true));
+		});
 
-	//TODO write favourite to database
-
-	var resultAsIdFromDatabase = 2;
-
+	//
+	//TODO GET select favourite to database
+	//TODO delete favourite to database
 	//TODO set a useable response message
-	/*const response = {
-		message: resultAsIdFromDatabase + ' wurde angelegt und in Datenbank geschrieben!',
-		favourite: ctx.request.body,
-	};*/
-	const response = {
-		articleID: resultAsIdFromDatabase,
-	};
-	return (ctx.body = response);
 });
 
 module.exports = router;

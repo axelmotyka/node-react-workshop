@@ -76,7 +76,7 @@ class NewsRepro {
 					'https://www.news.com.au/lifestyle/real-life/news-life/teens-bobbed-for-apples-in-urine-at-boozy-initiation-ceremony/news-story/fb50ad108a2bf67ff2998eca06ed1ab6/2018-10-24T08:11:53Z'
 				);
 				stmt.finalize();
-				
+
 				resolve(true);
 			});
 		});
@@ -90,12 +90,9 @@ class NewsRepro {
 					'INSERT INTO user (userID, username) VALUES (?,?)';
 
 				var stmt = this.prepare(insertStmt);
-				stmt.run(
-					1,
-					'testuserBackend'
-				);
+				stmt.run(1, 'testuserBackend');
 				stmt.finalize();
-				
+
 				resolve(true);
 			});
 		});
@@ -109,15 +106,42 @@ class NewsRepro {
 					'INSERT INTO favourites (userID, artikelID) VALUES (?,?)';
 
 				var stmt = this.prepare(insertStmt);
-				stmt.run(
-					1,
-					1
-				);
+				stmt.run(1, 1);
 				stmt.finalize();
-				
+
 				resolve(true);
 			});
 		});
+	}
+	insertFavouriteArticle(favourite) {
+		console.log('insert favourite article');
+		return new Promise((resolve, reject) => {
+			this.dao.db.serialize(function() {
+				let insertStmt =
+					'INSERT INTO artikel (sourceID, sourceName, author, title, description, url, urlToImage, publishedAt, content, md5Hash) VALUES (?,?,?,?,?,?,?,?,?,?)';
+
+				var stmt = this.prepare(insertStmt);
+				stmt.run(
+					favourite.source.id,
+					favourite.source.name,
+					favourite.author,
+					favourite.title,
+					favourite.description,
+					favourite.url,
+					favourite.urlToImage,
+					favourite.publishedAt,
+					favourite.content,
+					favourite.md5Hash
+				);
+				stmt.finalize();
+
+				resolve(true);
+			});
+		});
+	}
+	selectArtikelByMD5(md5Hash) {
+		let select = `SELECT COUNT(*) FROM artikel WHERE md5Hash="${md5Hash}"`;
+		return this.dao.all(select);
 	}
 }
 
