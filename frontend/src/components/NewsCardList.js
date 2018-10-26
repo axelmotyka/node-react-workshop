@@ -43,8 +43,6 @@ class NewsCardList extends Component {
 	}
 
 	handleChange(event) {
-		console.log(event.target.name);
-		console.log(event.target.value);
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
@@ -53,6 +51,12 @@ class NewsCardList extends Component {
 		console.log(article);
 
 		this.props.actions.insertFavourites(article);
+	}
+
+	removeFavourites(){
+		console.log ('removeFromFavouritesPressed() => ');
+
+		this.props.actions.removeFavourites();
 	}
 
 	render() {
@@ -98,6 +102,14 @@ class NewsCardList extends Component {
 										this.updateFavourites(article)
 									}>
 									Add To Favourites
+								</Button>
+								<Button
+									size="small"
+									color="secondary"
+									onClick={() =>
+										this.removeFavourites(article)
+									}>
+									Remove From Favourites
 								</Button>
 							</CardActions>
 						</Card>
