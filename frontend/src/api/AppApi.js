@@ -28,7 +28,9 @@ class AppApi {
 	static searchArticles(searchTerm) {
 		return new Promise((resolve, reject) => {
 			Request(
-				this.get('http://localhost:3000/api/v1/news/search?q='+ searchTerm)
+				this.get(
+					'http://localhost:3000/api/v1/news/search?q=' + searchTerm
+				)
 			)
 				.then(function(response) {
 					console.log(response);
@@ -40,7 +42,21 @@ class AppApi {
 				});
 		});
 	}
-	
+
+	static getFavourites() {
+		return new Promise((resolve, reject) => {
+			Request(this.get('http://localhost:3000/api/v1/news/favourite'))
+				.then(function(response) {
+					console.log(response);
+					resolve(response);
+				})
+				.catch(function(err) {
+					console.error(err);
+					reject(err);
+				});
+		});
+	}
+
 	static insertFavourites(favouriteArticle) {
 		return new Promise((resolve, reject) => {
 			Request(

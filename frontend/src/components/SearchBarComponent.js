@@ -27,10 +27,12 @@ class SearchBarComponent extends Component {
 	}
 
 	handleChange(event) {
+		console.log('handleChange: ' + event.target.name + ' ' + event.target.value);
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
 	submitSearchTerm() {
+		console.log('submitSearchTerm: ' + this.state.searchTerm);
 		this.props.actions.searchArticles(this.state.searchTerm);
 	}
 
