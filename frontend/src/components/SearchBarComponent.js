@@ -19,6 +19,13 @@ const styles = theme => ({
 	},
 });
 
+const localStyles = {
+	button: {
+		margin: 16,
+		backgroundColor: '#E20074',
+	},	
+}
+
 class SearchBarComponent extends Component {
 	constructor(props) {
 		super(props);
@@ -71,12 +78,12 @@ class SearchBarComponent extends Component {
 					/>
 					<Button
 						variant="outlined"
-						style={styles.button}
+						style={localStyles.button}
 						onClick={() => this.submitSearchTerm()}>
 						search
 					</Button>
 					<Button
-						style={styles.button}
+						style={localStyles.button}
 						variant="outlined"
 						onClick={() => this.getFavourites()}>
 						getFavs
