@@ -35,6 +35,9 @@ class SearchBarComponent extends Component {
 		console.log('submitSearchTerm: ' + this.state.searchTerm);
 		this.props.actions.searchArticles(this.state.searchTerm);
 	}
+	getFavourites() {
+		this.props.actions.getFavourites();
+	}
 
 	render() {
 		console.log('Rendering SearchBarComp');
@@ -67,6 +70,12 @@ class SearchBarComponent extends Component {
 						style={{ backgroundColor: '#E20074' }}
 						onClick={() => this.submitSearchTerm()}>
 						search
+					</Button>
+					<Button
+						variant="outlined"
+						style={{ backgroundColor: '#FF00FF' }}
+						onClick={() => this.getFavourites()}>
+						getFavs
 					</Button>
 				</Grid>
 			</div>
