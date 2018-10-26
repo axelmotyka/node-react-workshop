@@ -49,54 +49,54 @@ router.get(`${BASE_URL}/favourite`, async ctx => {
 router.post(`${BASE_URL}/favourite`, async ctx => {
 	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
 
-	const favourite = ctx.request.body;
+	const article = ctx.request.body;
 
-	if (favourite.author === undefined) {
+	if (article.author === undefined) {
 		ctx.status = 400;
 		ctx.message = 'Author not set!';
 		return;
 	}
-	if (favourite.title === undefined) {
+	if (article.title === undefined) {
 		ctx.status = 400;
 		ctx.message = 'Title not set!';
 		return;
 	}
-	if (favourite.source.id === undefined) {
+	if (article.source.id === undefined) {
 		ctx.status = 400;
 		ctx.message = 'SourceID not set!';
 		return;
 	}
-	if (favourite.source.name === undefined) {
+	if (article.source.name === undefined) {
 		ctx.status = 400;
 		ctx.message = 'SourceName not set!';
 		return;
 	}
-	if (favourite.description === undefined) {
+	if (article.description === undefined) {
 		ctx.status = 400;
 		ctx.message = 'Description not set!';
 		return;
 	}
-	if (favourite.url === undefined) {
+	if (article.url === undefined) {
 		ctx.status = 400;
 		ctx.message = 'URL not set!';
 		return;
 	}
-	if (favourite.urlToImage === undefined) {
+	if (article.urlToImage === undefined) {
 		ctx.status = 400;
 		ctx.message = 'URLtoImage not set!';
 		return;
 	}
-	if (favourite.publishedAt === undefined) {
+	if (article.publishedAt === undefined) {
 		ctx.status = 400;
 		ctx.message = 'PublishedAt not set!';
 		return;
 	}
-	if (favourite.content === undefined) {
+	if (article.content === undefined) {
 		ctx.status = 400;
 		ctx.message = 'Content not set!';
 		return;
 	}
-	if (favourite.md5Hash === undefined) {
+	if (article.md5Hash === undefined) {
 		ctx.status = 400;
 		ctx.message = 'md5Hash not set!';
 		return;
@@ -107,15 +107,17 @@ router.post(`${BASE_URL}/favourite`, async ctx => {
 
 	await dao
 		.connect('example.sqlite3')
-		.then(() => newsRepro.selectArtikelByMD5(favourite.md5Hash))
+		.then(() => newsRepro.selectArtikelByMD5(article.md5Hash))
 		.then(count => {
+			// Artikel vorhanden da > 0
 			if (count[0]['COUNT(*)'] > 0) {
-				ctx.status = 409; // HHTP STATUS CODE conflict
+				//TODO kein false senden!!!
 				ctx.body = false;
 				return;
 			}
+			// Kein Artikel vorhanden!
 			return newsRepro
-				.insertFavouriteArticle(favourite)
+				.insertArticle(article)
 				.then(() => (ctx.body = true));
 		});
 

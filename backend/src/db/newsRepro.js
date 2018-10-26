@@ -56,30 +56,23 @@ class NewsRepro {
 	}
 
 	insertExampleArticle() {
-		console.log('insert example data');
-		return new Promise((resolve, reject) => {
-			this.dao.db.serialize(function() {
-				let insertStmt =
-					'INSERT INTO artikel (artikelID, sourceID, sourceName, author, title, description, url, urlToImage, publishedAt, content, md5Hash) VALUES (?,?,?,?,?,?,?,?,?,?,?)';
 
-				var stmt = this.prepare(insertStmt);
-				stmt.run(
-					1,
-					'news-com-au',
-					'News.com.au',
-					'',
-					'In a uni initiation, these students bobbed for apples in urine and one died',
-					'STUDENTS bobbed for apples in a mixture of booze and urine as part of a drink-fuelled initiation ceremony where a student died, an inquest has heard.',
-					'https://www.news.com.au/lifestyle/real-life/news-life/teens-bobbed-for-apples-in-urine-at-boozy-initiation-ceremony/news-story/fb50ad108a2bf67ff2998eca06ed1ab6',
-					'2018-10-24T08:11:53Z',
-					'STUDENTS bobbed for apples in a mixture of booze and urine as part of a drink-fuelled initiation ceremony where a student died, an inquest has heard. First-year Economics student Ed Farmer, 20, died after being found slumped in a corridor not breathing at the… [+1659 chars]',
-					'https://www.news.com.au/lifestyle/real-life/news-life/teens-bobbed-for-apples-in-urine-at-boozy-initiation-ceremony/news-story/fb50ad108a2bf67ff2998eca06ed1ab6/2018-10-24T08:11:53Z'
-				);
-				stmt.finalize();
+		const article = {
+			'source': {
+				'id': 'testnews.de',
+				'name': 'testnews.de'
+			},
+			'author': '',
+			'title': 'Test Title',
+			'description': 'Bla blabla bla.',
+			'url': 'http://www.telekom.de',
+			'urlToImage': 'https://cdn.newsapi.com.au/image/v1/8619e05cb0d0df10d1a42a3d762a778c?width=650',
+			'publishedAt': '2018-10-24T08:11:53Z',
+			'content': 'STUDENTS bobbed for apples in a mixture of booze and urine as part of a drink-fuelled initiation ceremony where a student died, an inquest has heard. First-year Economics student Ed Farmer, 20, died after being found slumped in a corridor not breathing at the… [+1659 chars]',
+			'md5Hash': 'demohash-keinechterwert'
+		};
 
-				resolve(true);
-			});
-		});
+		this.insertArticle(article);
 	}
 
 	insertExampleUser() {
@@ -106,22 +99,34 @@ class NewsRepro {
 	}
 
 	insertExampleFavourite() {
-		console.log('insert example favourites');
+		this.insertFavourite(1,1);
+	}
+
+	insertFavourite(userID, artikelID) {
+		console.log('insert favourite');
+		
 		return new Promise((resolve, reject) => {
-			this.dao.db.serialize(function() {
-				let insertStmt =
-					'INSERT INTO favourites (userID, artikelID) VALUES (?,?)';
-
-				var stmt = this.prepare(insertStmt);
-				stmt.run(1, 1);
-				stmt.finalize();
-
-				resolve(true);
-			});
+			let insertStmt = `INSERT INTO favourites (userID, artikelID) VALUES (${userID}, ${artikelID})`;
+			this.dao.run(insertStmt);
 		});
 	}
-	insertFavouriteArticle(favourite) {
-		console.log('insert favourite article');
+
+	insertArticle(article) {
+		console.log('insert article');
+
+		/*let insertStmt =
+					'INSERT INTO artikel (sourceID, sourceName, author, title, description, url, urlToImage, publishedAt, content, md5Hash) VALUES (?,?,?,?,?,?,?,?,?,?)';
+
+		this.dao.run(insertStmt, article.source.id,
+			article.source.name,
+			article.author,
+			article.title,
+			article.description,
+			article.url,
+			article.urlToImage,
+			article.publishedAt,
+			article.content,
+			article.md5Hash);*/
 		return new Promise((resolve, reject) => {
 			this.dao.db.serialize(function() {
 				let insertStmt =
@@ -129,16 +134,16 @@ class NewsRepro {
 
 				var stmt = this.prepare(insertStmt);
 				stmt.run(
-					favourite.source.id,
-					favourite.source.name,
-					favourite.author,
-					favourite.title,
-					favourite.description,
-					favourite.url,
-					favourite.urlToImage,
-					favourite.publishedAt,
-					favourite.content,
-					favourite.md5Hash
+					article.source.id,
+					article.source.name,
+					article.author,
+					article.title,
+					article.description,
+					article.url,
+					article.urlToImage,
+					article.publishedAt,
+					article.content,
+					article.md5Hash
 				);
 				stmt.finalize();
 
@@ -146,10 +151,26 @@ class NewsRepro {
 			});
 		});
 	}
+
 	selectArtikelByMD5(md5Hash) {
 		let select = `SELECT COUNT(*) FROM artikel WHERE md5Hash="${md5Hash}"`;
 		return this.dao.all(select);
 	}
+
+	selectArtikelById() {
+		//TODO wie?
+	}
+
+	selectUser() {
+		//TODO wie??
+	}
+
+	selectFavourites() {
+		//TODO wie?
+	}
+
+
+
 }
 
 module.exports = NewsRepro;
