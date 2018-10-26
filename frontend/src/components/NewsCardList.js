@@ -6,6 +6,8 @@ import { ActionCreators } from '../actions';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
+import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -30,6 +32,12 @@ const styles = theme => ({
 		textAlign: 'right',
 		fontWeight: 'bold',
 	},
+	newsCard: {
+		marginBottom: '2vh',
+		border: '1px solid',
+		padding: '10px',
+		boxShadow: '8px 10px rgba(136,136,136,0.2)',
+	},
 });
 
 class NewsCardList extends Component {
@@ -53,8 +61,8 @@ class NewsCardList extends Component {
 		this.props.actions.insertFavourites(article);
 	}
 
-	removeFavourites(){
-		console.log ('removeFromFavouritesPressed() => ');
+	removeFavourites() {
+		console.log('removeFromFavouritesPressed() => ');
 
 		this.props.actions.removeFavourites();
 	}
@@ -71,7 +79,7 @@ class NewsCardList extends Component {
 				alignItems="center">
 				{this.props.news.map(article => {
 					return (
-						<Card className={classes.card} key={article.title}>
+						<Card className={classes.newsCard} key={article.title}>
 							<CardActionArea>
 								<CardMedia
 									className={classes.media}
@@ -85,7 +93,7 @@ class NewsCardList extends Component {
 										{article.title}
 									</Typography>
 									<Typography component="p">
-										{article.content}
+										{article.description}
 									</Typography>
 									<Typography
 										component="p"

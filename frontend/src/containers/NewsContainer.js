@@ -17,7 +17,6 @@ class NewsContainer extends Component {
 				spacing={16}>
 				<SearchBarComponent />
 				<NewsCardList />
-				<FavouritesCardList />
 			</Grid>
 		);
 	}
