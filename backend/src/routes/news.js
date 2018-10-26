@@ -18,7 +18,7 @@ router.get(`${BASE_URL}/search`, async ctx => {
 			apiKey: '3746877ab56246018681edb83832e405',
 			q: ctx.query.q,
 			pageSize: '10',
-			language: 'de',
+			language: 'en',
 		},
 		json: true, // Automatically parses the JSON string in the response
 	};
@@ -62,7 +62,9 @@ router.get(`${BASE_URL}/favourite`, async ctx => {
 				delete article['sourceName'];
 			});
 
-			ctx.body = articles;
+			ctx.body = {
+				"articles": articles
+			};
 		});
 });
 
