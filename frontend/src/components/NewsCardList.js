@@ -30,6 +30,12 @@ const styles = theme => ({
 		textAlign: 'right',
 		fontWeight: 'bold',
 	},
+	newsCard: {
+		marginBottom: '2vh',
+		border: '1px solid',
+		padding: '10px',
+		boxShadow: '8px 10px rgba(136,136,136,0.2)',
+	},
 });
 
 class NewsCardList extends Component {
@@ -37,14 +43,13 @@ class NewsCardList extends Component {
 		super(props);
 		this.state = {
 			addToFavouriteArticle: '',
+			removeFromFavouriteArticle: '',
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(event) {
-		console.log(event.target.name);
-		console.log(event.target.value);
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
@@ -53,6 +58,12 @@ class NewsCardList extends Component {
 		console.log(article);
 
 		this.props.actions.insertFavourites(article);
+	}
+
+	removeFavourite(article) {
+		console.log('removeFromFavouritesPressed() => ');
+
+		this.props.actions.removeFavourite(article);
 	}
 
 	render() {
@@ -67,7 +78,7 @@ class NewsCardList extends Component {
 				alignItems="center">
 				{this.props.news.map(article => {
 					return (
-						<Card className={classes.card} key={article.title}>
+						<Card className={classes.newsCard} key={article.title}>
 							<CardActionArea>
 								<CardMedia
 									className={classes.media}
@@ -81,7 +92,7 @@ class NewsCardList extends Component {
 										{article.title}
 									</Typography>
 									<Typography component="p">
-										{article.content}
+										{article.description}
 									</Typography>
 									<Typography
 										component="p"
@@ -98,6 +109,14 @@ class NewsCardList extends Component {
 										this.updateFavourites(article)
 									}>
 									Add To Favourites
+								</Button>
+								<Button
+									size="small"
+									color="secondary"
+									onClick={() =>
+										this.removeFavourite(article)
+									}>
+									Remove From Favourites
 								</Button>
 							</CardActions>
 						</Card>

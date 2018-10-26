@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import NewsCardList from '../components/NewsCardList';
-import FavouritesTableComponent from '../components/FavouritesTableComponent';
 import SearchBarComponent from '../components/SearchBarComponent';
 
 class NewsContainer extends Component {
@@ -17,7 +16,6 @@ class NewsContainer extends Component {
 				spacing={16}>
 				<SearchBarComponent />
 				<NewsCardList />
-				<FavouritesTableComponent />
 			</Grid>
 		);
 	}

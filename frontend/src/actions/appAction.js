@@ -17,19 +17,29 @@ export function setArticles(news) {
 	};
 }
 
+export function getFavourites() {
+	console.log('**************** actions/searchArticles() ****************');
+	return (dispatch, getState) => {
+		return AppApi.getFavourites().then(response => {
+			dispatch(setArticles(response));
+		});
+	};
+}
+
+
+export function setFavourites(favs) {
+	return {
+		type: types.SET_FAVOURITES,
+		favs,
+	};
+}
+
 export function insertFavourites(addToFavouriteArticle) {
 	console.log('**************** actions/insertFavourites(' + addToFavouriteArticle + ') ****************');
 	return (dispatch, getState) => {
 		return AppApi.insertFavourites(addToFavouriteArticle).then(response => {
 			dispatch(insertFavouritesResult(response));
 		});
-	};
-}
-
-export function setFavourites(favourites) {
-	return {
-		type: types.SET_FAVOURITES,
-		favourites,
 	};
 }
 
@@ -40,4 +50,19 @@ export function insertFavouritesResult(result) {
 	};
 }
 
+export function removeFavourite(removeFromFavouriteArticle) {
+	console.log('**************** actions/removeFromFavourites(' + removeFromFavouriteArticle + ') ****************');
+	return (dispatch, getState) => {
+		return AppApi.removeFavourite(removeFromFavouriteArticle).then(response => {
+			dispatch(deleteFavourite(response));
+		});
+	};
+}
+
+export function deleteFavourite(item) {
+	return {
+		type: types.DELETE_FAVOURITE,
+		item,
+	};
+}
 

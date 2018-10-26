@@ -15,23 +15,37 @@ const styles = theme => ({
 	},
 });
 
+const localStyles = {
+	button: {
+		margin: 16,
+		backgroundColor: '#E20074',
+		color: 'white',
+		fontWeight: 'bold'
+	},	
+};
+
 class SearchBarComponent extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			searchTerm: 'so ein Tag',
+
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleChange(event) {
+		console.log('handleChange: ' + event.target.name + ' ' + event.target.value);
 		this.setState({ [event.target.name]: event.target.value });
 	}
 
 	submitSearchTerm() {
+		console.log('submitSearchTerm: ' + this.state.searchTerm);
 		this.props.actions.searchArticles(this.state.searchTerm);
+	}
+	getFavourites() {
+		this.props.actions.getFavourites();
 	}
 
 	render() {
@@ -41,7 +55,7 @@ class SearchBarComponent extends Component {
 			<div>
 				<Grid 
 					item container direction="row"
-					justify="center"
+					padding={20}
 					alignItems="center">
 					<TextField
 						onKeyPress={(ev) => {
@@ -62,9 +76,15 @@ class SearchBarComponent extends Component {
 					/>
 					<Button
 						variant="outlined"
-						style={{ backgroundColor: '#E20074' }}
+						style={localStyles.button}
 						onClick={() => this.submitSearchTerm()}>
-						search
+						suche
+					</Button>
+					<Button
+						style={localStyles.button}
+						variant="outlined"
+						onClick={() => this.getFavourites()}>
+						lieblinge
 					</Button>
 				</Grid>
 			</div>
