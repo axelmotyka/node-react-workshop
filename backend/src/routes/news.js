@@ -39,11 +39,31 @@ router.get(`${BASE_URL}/search`, async ctx => {
 router.get(`${BASE_URL}/favourite`, async ctx => {
 	console.log(`${LOG_TAG} - Handling ${ctx._matchedRoute}`);
 
-	//TODO get favourite from database
-	const favourite = {
-		message: 'Hier würden ihre Favoriten stehen!',
-	};
-	return (ctx.body = favourite);
+	const dao = new Sqlite3Dao();
+	const newsRepro = new NewsRepro(dao);
+
+	let userID = null;
+
+	await dao
+		.connect('example.sqlite3')
+		.then(() => newsRepro.selectUser('testuserFrontend'))
+		.then(selectedUserID => {
+			userID = selectedUserID[0].userID;
+		})
+		.then(() => newsRepro.selectAllFavouriteArticles(userID))
+		.then(favourites => newsRepro.selectAllArticles(favourites))
+		.then(articles => {
+
+			articles.forEach(function(article) {
+				article['source'] = {};
+				article['source']['id'] = article['sourceID'];
+				delete article['sourceID'];
+				article['source']['name'] = article['sourceName'];
+				delete article['sourceName'];
+			});
+
+			ctx.body = articles;
+		});
 });
 
 router.post(`${BASE_URL}/favourite`, async ctx => {
@@ -105,26 +125,38 @@ router.post(`${BASE_URL}/favourite`, async ctx => {
 	const dao = new Sqlite3Dao();
 	const newsRepro = new NewsRepro(dao);
 
+	let userID = null;
+
 	await dao
 		.connect('example.sqlite3')
+		.then(() => newsRepro.selectUser('testuserFrontend'))
+		.then(selectedUserID => {
+			userID = selectedUserID[0].userID;
+		})
 		.then(() => newsRepro.selectArtikelByMD5(article.md5Hash))
-		.then(count => {
+		.then(articles => {
 			// Artikel vorhanden da > 0
-			if (count[0]['COUNT(*)'] > 0) {
-				//TODO kein false senden!!!
-				ctx.body = false;
-				return;
+			if (articles.length > 0) {
+				return newsRepro
+					.selectFavourites(userID, articles[0].artikelID)
+					.then(fav => {
+						if (fav.length == 0) {
+							newsRepro.insertFavourite(
+								userID,
+								articles[0].artikelID
+							);
+						}
+					})
+					.then(() => (ctx.body = true));
 			}
 			// Kein Artikel vorhanden!
 			return newsRepro
 				.insertArticle(article)
+				.then(article => {
+					newsRepro.insertFavourite(userID, article.id);
+				})
 				.then(() => (ctx.body = true));
 		});
-
-	//
-	//TODO GET select favourite to database
-	//TODO delete favourite to database
-	//TODO set a useable response message
 });
 
 module.exports = router;

@@ -56,23 +56,24 @@ class NewsRepro {
 	}
 
 	insertExampleArticle() {
-
 		const article = {
-			'source': {
-				'id': 'testnews.de',
-				'name': 'testnews.de'
+			source: {
+				id: 'testnews.de',
+				name: 'testnews.de',
 			},
-			'author': '',
-			'title': 'Test Title',
-			'description': 'Bla blabla bla.',
-			'url': 'http://www.telekom.de',
-			'urlToImage': 'https://cdn.newsapi.com.au/image/v1/8619e05cb0d0df10d1a42a3d762a778c?width=650',
-			'publishedAt': '2018-10-24T08:11:53Z',
-			'content': 'STUDENTS bobbed for apples in a mixture of booze and urine as part of a drink-fuelled initiation ceremony where a student died, an inquest has heard. First-year Economics student Ed Farmer, 20, died after being found slumped in a corridor not breathing at the… [+1659 chars]',
-			'md5Hash': 'demohash-keinechterwert'
+			author: '',
+			title: 'Test Title',
+			description: 'Bla blabla bla.',
+			url: 'http://www.telekom.de',
+			urlToImage:
+				'https://cdn.newsapi.com.au/image/v1/8619e05cb0d0df10d1a42a3d762a778c?width=650',
+			publishedAt: '2018-10-24T08:11:53Z',
+			content:
+				'STUDENTS bobbed for apples in a mixture of booze and urine as part of a drink-fuelled initiation ceremony where a student died, an inquest has heard. First-year Economics student Ed Farmer, 20, died after being found slumped in a corridor not breathing at the… [+1659 chars]',
+			md5Hash: 'demohash-keinechterwert',
 		};
 
-		this.insertArticle(article);
+		return this.insertArticle(article);
 	}
 
 	insertExampleUser() {
@@ -83,14 +84,8 @@ class NewsRepro {
 					'INSERT INTO user (userID, username) VALUES (?,?)';
 
 				var stmt = this.prepare(insertStmt);
-				stmt.run(
-					1,
-					'testuserBackend'
-				);
-				stmt.run(
-					2,
-					'testuserFrontend'
-				);
+				stmt.run(1, 'testuserBackend');
+				stmt.run(2, 'testuserFrontend');
 				stmt.finalize();
 
 				resolve(true);
@@ -99,12 +94,12 @@ class NewsRepro {
 	}
 
 	insertExampleFavourite() {
-		this.insertFavourite(1,1);
+		this.insertFavourite(2, 1);
 	}
 
 	insertFavourite(userID, artikelID) {
 		console.log('insert favourite');
-		
+
 		return new Promise((resolve, reject) => {
 			let insertStmt = `INSERT INTO favourites (userID, artikelID) VALUES (${userID}, ${artikelID})`;
 			this.dao.run(insertStmt);
@@ -113,64 +108,49 @@ class NewsRepro {
 
 	insertArticle(article) {
 		console.log('insert article');
-
-		/*let insertStmt =
-					'INSERT INTO artikel (sourceID, sourceName, author, title, description, url, urlToImage, publishedAt, content, md5Hash) VALUES (?,?,?,?,?,?,?,?,?,?)';
-
-		this.dao.run(insertStmt, article.source.id,
-			article.source.name,
-			article.author,
-			article.title,
-			article.description,
-			article.url,
-			article.urlToImage,
-			article.publishedAt,
-			article.content,
-			article.md5Hash);*/
-		return new Promise((resolve, reject) => {
-			this.dao.db.serialize(function() {
-				let insertStmt =
-					'INSERT INTO artikel (sourceID, sourceName, author, title, description, url, urlToImage, publishedAt, content, md5Hash) VALUES (?,?,?,?,?,?,?,?,?,?)';
-
-				var stmt = this.prepare(insertStmt);
-				stmt.run(
-					article.source.id,
-					article.source.name,
-					article.author,
-					article.title,
-					article.description,
-					article.url,
-					article.urlToImage,
-					article.publishedAt,
-					article.content,
-					article.md5Hash
-				);
-				stmt.finalize();
-
-				resolve(true);
-			});
-		});
+		let insertStmt = `INSERT INTO artikel 
+					(sourceID, sourceName, author, title, description, url, urlToImage, publishedAt, content, md5Hash) 
+					VALUES 
+					("${article.source.id}","${article.source.name}","${article.author}","${
+	article.title
+}","${article.description}","${article.url}","${article.urlToImage}","${
+	article.publishedAt
+}","${article.content}","${article.md5Hash}")`;
+		return this.dao.run(insertStmt);
 	}
 
 	selectArtikelByMD5(md5Hash) {
-		let select = `SELECT COUNT(*) FROM artikel WHERE md5Hash="${md5Hash}"`;
+		let select = `SELECT artikelID FROM artikel WHERE md5Hash="${md5Hash}"`;
 		return this.dao.all(select);
 	}
 
-	selectArtikelById() {
-		//TODO wie?
+	selectUser(username) {
+		console.log('selectUser()');
+		let select = `SELECT userID FROM user WHERE username="${username}"`;
+		return this.dao.all(select);
 	}
 
-	selectUser() {
-		//TODO wie??
+	selectAllFavouriteArticles(userID) {
+		console.log('selectAllFavouriteArticles()');
+		let select = `SELECT artikelID FROM favourites WHERE userID=${userID}`;
+		return this.dao.all(select);
 	}
 
-	selectFavourites() {
-		//TODO wie?
+	selectAllArticles(artikelIDs) {
+		console.log('selectAllArticles()');
+		let select = 'SELECT * FROM artikel WHERE artikelID=';
+		let i;
+		for(i=0; i < artikelIDs.length; i++) {
+			if(i==0) select += artikelIDs[i].artikelID;
+			else select += ' OR artikelID=' + artikelIDs[i].artikelID;
+		}
+		return this.dao.all(select);
 	}
 
-
-
+	selectFavourites(userID, artikelID) {
+		let select = `SELECT * FROM favourites WHERE userID=${userID} AND artikelID=${artikelID}`;
+		return this.dao.all(select);
+	}
 }
 
 module.exports = NewsRepro;
