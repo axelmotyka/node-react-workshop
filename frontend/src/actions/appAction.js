@@ -21,10 +21,11 @@ export function getFavourites() {
 	console.log('**************** actions/searchArticles() ****************');
 	return (dispatch, getState) => {
 		return AppApi.getFavourites().then(response => {
-			dispatch(setFavourites(response));
+			dispatch(setArticles(response));
 		});
 	};
 }
+
 
 export function setFavourites(favs) {
 	return {
