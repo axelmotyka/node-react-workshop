@@ -13,16 +13,14 @@ const styles = theme => ({
 		marginLeft: 60,
 		marginRight: theme.spacing.unit,
 	},
-	button: {
-		margin: 16,
-		backgroundColor: '#E20074',
-	},
 });
 
 const localStyles = {
 	button: {
 		margin: 16,
 		backgroundColor: '#E20074',
+		color: 'white',
+		fontWeight: 'bold'
 	},	
 }
 
