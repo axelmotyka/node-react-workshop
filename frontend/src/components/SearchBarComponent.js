@@ -84,7 +84,7 @@ class SearchBarComponent extends Component {
 						style={localStyles.button}
 						variant="outlined"
 						onClick={() => this.getFavourites()}>
-						lieblinge
+						favorites
 					</Button>
 				</Grid>
 			</div>
