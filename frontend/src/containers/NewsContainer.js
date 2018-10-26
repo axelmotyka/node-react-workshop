@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 import NewsCardList from '../components/NewsCardList';
-import FavouritesCardList from '../components/FavouritesCardList';
 import SearchBarComponent from '../components/SearchBarComponent';
 
 class NewsContainer extends Component {

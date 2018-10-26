@@ -78,13 +78,13 @@ class SearchBarComponent extends Component {
 						variant="outlined"
 						style={localStyles.button}
 						onClick={() => this.submitSearchTerm()}>
-						search
+						suche
 					</Button>
 					<Button
 						style={localStyles.button}
 						variant="outlined"
 						onClick={() => this.getFavourites()}>
-						getFavs
+						lieblinge
 					</Button>
 				</Grid>
 			</div>
