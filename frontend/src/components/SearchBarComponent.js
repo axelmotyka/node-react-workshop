@@ -13,6 +13,10 @@ const styles = theme => ({
 		marginLeft: 60,
 		marginRight: theme.spacing.unit,
 	},
+	button: {
+		margin: 16,
+		backgroundColor: '#E20074',
+	},
 });
 
 class SearchBarComponent extends Component {
@@ -20,7 +24,7 @@ class SearchBarComponent extends Component {
 		super(props);
 
 		this.state = {
-			searchTerm: 'so ein Tag',
+			searchTerm: 'homoehe',
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -46,7 +50,7 @@ class SearchBarComponent extends Component {
 			<div>
 				<Grid 
 					item container direction="row"
-					justify="center"
+					padding={20}
 					alignItems="center">
 					<TextField
 						onKeyPress={(ev) => {
@@ -67,13 +71,13 @@ class SearchBarComponent extends Component {
 					/>
 					<Button
 						variant="outlined"
-						style={{ backgroundColor: '#E20074' }}
+						style={styles.button}
 						onClick={() => this.submitSearchTerm()}>
 						search
 					</Button>
 					<Button
+						style={styles.button}
 						variant="outlined"
-						style={{ backgroundColor: '#FF00FF' }}
 						onClick={() => this.getFavourites()}>
 						getFavs
 					</Button>
