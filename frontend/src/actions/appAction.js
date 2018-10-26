@@ -28,7 +28,7 @@ export function getFavourites() {
 
 export function setFavourites(favs) {
 	return {
-		type: types.GET_FAVOURITES,
+		type: types.SET_FAVOURITES,
 		favs,
 	};
 }
@@ -49,4 +49,19 @@ export function insertFavouritesResult(result) {
 	};
 }
 
+export function removeFavourite(removeFromFavouriteArticle) {
+	console.log('**************** actions/removeFromFavourites(' + removeFromFavouriteArticle + ') ****************');
+	return (dispatch, getState) => {
+		return AppApi.removeFavourite(removeFromFavouriteArticle).then(response => {
+			dispatch(deleteFavourite(response));
+		});
+	};
+}
+
+export function deleteFavourite(item) {
+	return {
+		type: types.DELETE_FAVOURITE,
+		item,
+	};
+}
 

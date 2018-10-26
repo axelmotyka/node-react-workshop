@@ -22,7 +22,7 @@ const localStyles = {
 		color: 'white',
 		fontWeight: 'bold'
 	},	
-}
+};
 
 class SearchBarComponent extends Component {
 	constructor(props) {

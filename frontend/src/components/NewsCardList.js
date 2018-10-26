@@ -6,8 +6,6 @@ import { ActionCreators } from '../actions';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import Paper from '@material-ui/core/Paper';
-import Divider from '@material-ui/core/Divider';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -45,6 +43,7 @@ class NewsCardList extends Component {
 		super(props);
 		this.state = {
 			addToFavouriteArticle: '',
+			removeFromFavouriteArticle: '',
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -61,10 +60,10 @@ class NewsCardList extends Component {
 		this.props.actions.insertFavourites(article);
 	}
 
-	removeFavourites() {
+	removeFavourite(article) {
 		console.log('removeFromFavouritesPressed() => ');
 
-		this.props.actions.removeFavourites();
+		this.props.actions.removeFavourite(article);
 	}
 
 	render() {
@@ -115,7 +114,7 @@ class NewsCardList extends Component {
 									size="small"
 									color="secondary"
 									onClick={() =>
-										this.removeFavourites(article)
+										this.removeFavourite(article)
 									}>
 									Remove From Favourites
 								</Button>

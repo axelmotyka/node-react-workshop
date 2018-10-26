@@ -43,9 +43,14 @@ class AppApi {
 		});
 	}
 
-	static getFavourites() {
+	static insertFavourites(favouriteArticle) {
 		return new Promise((resolve, reject) => {
-			Request(this.get('http://localhost:3000/api/v1/news/favourite'))
+			Request(
+				this.post(
+					'http://localhost:3000/api/v1/news/favourite',
+					favouriteArticle
+				)
+			)
 				.then(function(response) {
 					console.log(response);
 					resolve(response);
@@ -57,12 +62,11 @@ class AppApi {
 		});
 	}
 
-	static insertFavourites(favouriteArticle) {
+	static removeFavourite() {
 		return new Promise((resolve, reject) => {
 			Request(
 				this.post(
-					'http://localhost:3000/api/v1/news/favourite?userID=123',
-					favouriteArticle
+					'http://localhost:3000/api/v1/news/favourite'
 				)
 			)
 				.then(function(response) {
